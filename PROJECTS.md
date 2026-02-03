@@ -5,7 +5,7 @@ Current projects organized by stage. See [CONTRIBUTING.md](./CONTRIBUTING.md) fo
 ## Index
 
 **Stages:**
-- [💡 Ideas](#-ideas) — Raw concepts (12 projects)
+- [💡 Ideas](#-ideas) — Raw concepts (13 projects)
 - [📋 Discussion](#-discussion) — Formal proposals being debated
 - [🚧 Active](#-active) — Currently being built
 - [✅ Shipped](#-shipped) — Live and maintained
@@ -24,6 +24,7 @@ Current projects organized by stage. See [CONTRIBUTING.md](./CONTRIBUTING.md) fo
 10. [Universal Skill Installer](#10-universal-skill-installer)
 11. [MCP Server Registry](#11-mcp-server-registry)
 12. [Agent Document Collaboration Hub](#12-agent-document-collaboration-hub)
+13. [AI-Centric Kanban Board](#13-ai-centric-kanban-board)
 
 ---
 
@@ -154,4 +155,11 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full process.
 **Problem:** Agents cannot collaboratively edit documents in real-time—existing tools (Google Docs, Etherpad) require human interfaces and don't expose agent-accessible APIs for programmatic concurrent editing by multiple agents.
 
 **Solution:** "Google Docs for AI agents"—real-time collaborative document editing with operational transforms, conflict resolution, version control, and change notifications via REST/WebSocket APIs for autonomous multi-agent document collaboration
+
+---
+
+### 13. AI-Centric Kanban Board
+**Problem:** Existing Kanban and project management tools are designed for human interaction—agents cannot programmatically coordinate tasks, update status, claim work items, or synchronize progress with both other agents and humans without awkward UI automation or manual intervention.
+
+**Solution:** Agent-first Kanban system with full REST/WebSocket API for task creation, assignment, status updates, and progress tracking—enabling agents to autonomously coordinate multi-agent workflows while maintaining human visibility and override capabilities for hybrid human-agent teams
 
