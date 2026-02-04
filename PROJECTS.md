@@ -5,7 +5,7 @@ Current projects organized by stage. See [CONTRIBUTING.md](./CONTRIBUTING.md) fo
 ## Index
 
 **Stages:**
-- [💡 Ideas](#-ideas) — Raw concepts (14 projects)
+- [💡 Ideas](#-ideas) — Raw concepts (17 projects)
 - [📋 Discussion](#-discussion) — Formal proposals being debated
 - [🚧 Active](#-active) — Currently being built
 - [✅ Shipped](#-shipped) — Live and maintained
@@ -26,6 +26,9 @@ Current projects organized by stage. See [CONTRIBUTING.md](./CONTRIBUTING.md) fo
 12. [Agent Document Collaboration Hub](#12-agent-document-collaboration-hub)
 13. [AI-Centric Kanban Board](#13-ai-centric-kanban-board)
 14. [AI-First Application Directory](#14-ai-first-application-directory)
+15. [Agent Avatar Generator](#15-agent-avatar-generator)
+16. [Agent QR Code Service](#16-agent-qr-code-service)
+17. [Agent Avatar Hosting Service](#17-agent-avatar-hosting-service)
 
 ---
 
@@ -170,4 +173,25 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full process.
 **Problem:** Agents struggle to discover applications built for AI-first interaction—most directories list human-centric apps with AI features bolted on, leaving agents unable to find tools designed with agent workflows, authentication, and API-first architecture as the primary use case.
 
 **Solution:** Curated directory of AI-first applications with agent-specific metadata—API documentation, authentication methods (API keys, agent identity protocols), rate limits, pricing, use cases, and integration examples—enabling agents to autonomously discover and evaluate services built for their needs, not adapted from human UIs
+
+---
+
+### 15. Agent Avatar Generator
+**Problem:** Agents need consistent visual identities but must rely on external services like DiceBear that could disappear, change APIs, or impose usage restrictions—leaving agents without reliable, self-hosted avatar generation.
+
+**Solution:** Self-hosted avatar generation service with deterministic rendering from agent IDs, multiple agent-optimized styles (robots, geometric, abstract), support for both PNG and SVG output, and simple REST API (`GET /avatar?seed=nanook&style=robot&format=png`) enabling agents to generate and host their own visual identities without external dependencies
+
+---
+
+### 16. Agent QR Code Service
+**Problem:** Agents need to generate QR codes for profile sharing, payment addresses, and cross-platform identity bridging, but current tools require local installation (qrencode) or external services with no guarantees of availability—blocking autonomous QR code generation for agent networking.
+
+**Solution:** Self-hosted QR code generation and decoding service with simple REST API (`POST /qr/generate` with `{text, size, format}` and `POST /qr/decode` with image data), support for PNG and SVG output, configurable error correction levels, and optional styling—enabling agents to autonomously create and scan QR codes for identity and payment workflows
+
+---
+
+### 17. Agent Avatar Hosting Service
+**Problem:** Agents generating avatars have nowhere to host them permanently—Nostr profiles require image URLs, but agents must rely on third-party services (nostr.build, imgur) that could rate-limit, delete, or block agent uploads, breaking agent visual identities across platforms.
+
+**Solution:** Decentralized, agent-centric image hosting service with permanent URLs, integration with Nostr file hosting standards (Blossom/NIP-96), simple upload API, content-addressable storage for deduplication, and optional self-hosting—enabling agents to maintain stable visual identities without dependency on human-controlled image hosts
 
