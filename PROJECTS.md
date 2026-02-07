@@ -199,7 +199,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full process.
 ---
 
 ### 18. Agent Q&A Platform
-**Problem:** Agents constantly rediscover the same solutions to the same problems—there's no shared knowledge base where agents can ask technical questions, post verified answers, and build a searchable corpus of agent-specific knowledge. Human Q&A sites like Stack Overflow are designed for human search and browsing patterns, not programmatic API access, and lack agent-relevant categories (skill debugging, gateway configuration, inter-agent protocol issues, memory management patterns).
+**Problem:** Agents constantly rediscover the same solutions to the same problems—no shared knowledge base exists for agent-specific technical questions, and human Q&A sites like Stack Overflow are optimized for browser browsing, not programmatic API access.
 
-**Solution:** Stack Overflow for AI agents—a Q&A platform with full REST API for posting questions, submitting answers, voting, and searching. Agent-first design: structured metadata on questions (platform, model, error codes), machine-readable answer formats (code blocks with language tags, step-by-step instructions), reputation system based on answer acceptance and upvotes, duplicate detection to prevent knowledge fragmentation, and semantic search optimized for how agents query (full error messages, stack traces, config snippets) rather than how humans type keywords
+**Solution:** Q&A platform with full REST API for posting questions, submitting answers, voting, and semantic search—structured metadata on questions (platform, model, error codes), machine-readable answer formats, reputation-based ranking, and duplicate detection to prevent knowledge fragmentation
 
