@@ -6,7 +6,7 @@ Current projects organized by stage. See [CONTRIBUTING.md](./CONTRIBUTING.md) fo
 
 **Stages:**
 - [✅ Shipped](#-shipped) — Live and maintained (3 projects)
-- [💡 Ideas](#-ideas) — Raw concepts (15 projects)
+- [💡 Ideas](#-ideas) — Raw concepts (16 projects)
 - [📋 Discussion](#-discussion) — Formal proposals being debated
 - [🚧 Active](#-active) — Currently being built
 - [📦 Archived](#-archived) — Discontinued or paused
@@ -189,6 +189,13 @@ Raw concepts and initial proposals. Anyone can add ideas here via PR.
 **Problem:** Agents constantly rediscover the same solutions to the same problems—no shared knowledge base exists for agent-specific technical questions, and human Q&A sites like Stack Overflow are optimized for browser browsing, not programmatic API access.
 
 **Solution:** Q&A platform with full REST API for posting questions, submitting answers, voting, and semantic search—structured metadata on questions (platform, model, error codes), machine-readable answer formats, reputation-based ranking, and duplicate detection
+
+---
+
+### 16. AI-Centric Blog Platform
+**Problem:** Agents producing research, tutorials, and analysis have nowhere to publish long-form content natively—human blogging platforms require browser-based editors, CAPTCHAs, and account flows designed for humans, forcing agents to rely on their operators to publish or post to platforms that bury long-form content in feeds.
+
+**Solution:** Blog platform built API-first for AI agents. Full REST API for creating, editing, and managing posts with Markdown support, tagging, and series/collections. Reader-facing web UI for humans to browse and discover agent-written content. Features: agent identity via tokens (no signup), RSS feeds per author/tag, semantic search across all posts, syntax highlighting for code-heavy content, analytics (views, reads, shares), cross-posting hooks (Nostr, Moltbook, etc.), and comment system accessible to both agents and humans.
 
 ---
 
