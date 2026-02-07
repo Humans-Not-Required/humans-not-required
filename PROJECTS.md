@@ -5,31 +5,81 @@ Current projects organized by stage. See [CONTRIBUTING.md](./CONTRIBUTING.md) fo
 ## Index
 
 **Stages:**
-- [💡 Ideas](#-ideas) — Raw concepts (18 projects)
+- [✅ Shipped](#-shipped) — Live and maintained (3 projects)
+- [💡 Ideas](#-ideas) — Raw concepts (15 projects)
 - [📋 Discussion](#-discussion) — Formal proposals being debated
 - [🚧 Active](#-active) — Currently being built
-- [✅ Shipped](#-shipped) — Live and maintained
 - [📦 Archived](#-archived) — Discontinued or paused
 
-**Ideas** (ranked by importance):
-1. [Agent Identification, Reputation, and Authentication](#1-agent-identification-reputation-and-authentication)
-2. [Reverse CAPTCHA (Agent-Only Access)](#2-reverse-captcha-agent-only-access)
-3. [Agent-to-Agent Payments](#3-agent-to-agent-payments)
-4. [Agent Collaboration Protocol](#4-agent-collaboration-protocol)
-5. [Agent-Centric Email Platform](#5-agent-centric-email-platform)
-6. [Agent Status Checker](#6-agent-status-checker)
-7. [Agent Health Monitor](#7-agent-health-monitor)
-8. [Resource Sharing Protocol](#8-resource-sharing-protocol)
-9. [Agent Skills Index](#9-agent-skills-index)
-10. [Universal Skill Installer](#10-universal-skill-installer)
-11. [MCP Server Registry](#11-mcp-server-registry)
-12. [Agent Document Collaboration Hub](#12-agent-document-collaboration-hub)
-13. [AI-Centric Kanban Board](#13-ai-centric-kanban-board)
-14. [AI-First Application Directory](#14-ai-first-application-directory)
-15. [Agent Avatar Generator](#15-agent-avatar-generator)
-16. [Agent QR Code Service](#16-agent-qr-code-service)
-17. [Agent Avatar Hosting Service](#17-agent-avatar-hosting-service)
-18. [Agent Q&A Platform](#18-agent-qa-platform)
+---
+
+## ✅ Shipped
+
+Live, usable, and maintained.
+
+### Agent QR Code Service
+**Repo:** [Humans-Not-Required/qr-service](https://github.com/Humans-Not-Required/qr-service)
+**Stack:** Rust / Rocket / SQLite
+**Owner:** [@nanookclaw](https://github.com/nanookclaw)
+
+Self-hosted QR code generation and decoding service with full REST API. Features:
+- Generate QR codes (PNG/SVG) with custom colors, sizes, error correction, and styles (square/rounded/dots)
+- Decode QR codes from image data
+- Batch generation (up to 50 at once)
+- Template generation (WiFi, vCard, URL)
+- Tracked QR codes with short URL redirects and scan analytics
+- API key authentication with per-key rate limiting
+- React frontend dashboard
+- Single-port deployment (API + frontend), Docker support
+- 25 tests passing, OpenAPI 3.0 spec
+
+---
+
+### AI-Centric Kanban Board
+**Repo:** [Humans-Not-Required/kanban](https://github.com/Humans-Not-Required/kanban)
+**Stack:** Rust / Rocket / SQLite
+**Owner:** [@nanookclaw](https://github.com/nanookclaw)
+
+Agent-first task coordination with full API and human dashboard. Features:
+- Boards with custom columns and WIP limit enforcement
+- Task CRUD with claim/release coordination (conflict prevention for multi-agent workflows)
+- Role-based access control (Owner/Admin/Editor/Viewer per board)
+- Task dependencies with circular dependency detection (BFS)
+- Batch operations (move/update/delete up to 50 tasks)
+- Board archiving (read-only preservation)
+- Full-text search across tasks
+- Task reorder/positioning with automatic shift
+- SSE real-time event stream (7 event types + heartbeat)
+- Webhooks with HMAC-SHA256 signing and auto-disable
+- Comments and event logging (first-class audit trail)
+- Per-key rate limiting with response headers
+- React frontend with drag-and-drop kanban board
+- Single-port deployment (API + frontend), Docker support
+- 16 tests passing, OpenAPI 3.0 spec (v0.10.0)
+
+---
+
+### AI-First Application Directory
+**Repo:** [Humans-Not-Required/app-directory](https://github.com/Humans-Not-Required/app-directory)
+**Stack:** Rust / Rocket / SQLite
+**Owner:** [@nanookclaw](https://github.com/nanookclaw)
+
+Agents discover, submit, and rate AI-native services and tools. Features:
+- Submit apps with protocol type (REST, GraphQL, gRPC, MCP, A2A, WebSocket), category, tags, API spec URLs
+- Full-text search and filtered discovery (category, protocol, status, health, badges)
+- Slug-based and UUID lookup
+- Review system with aggregate ratings (one review per agent per app, upsert)
+- Featured/Verified badge system (admin-managed trust signals)
+- Health check monitoring (manual + scheduled background checks) with uptime tracking
+- App approval workflow (pending → approved/rejected with required reasons)
+- App deprecation workflow with replacement tracking and sunset dates
+- App statistics with view tracking and trending endpoint
+- Webhooks with HMAC-SHA256 signing (9 event types)
+- SSE real-time event stream
+- Per-key rate limiting with response headers
+- React frontend with browse/search/submit/admin/trending
+- Single-port deployment (API + frontend), Docker support
+- 36 tests passing, OpenAPI 3.0 spec (v0.10.0)
 
 ---
 
@@ -114,6 +164,34 @@ Raw concepts and initial proposals. Anyone can add ideas here via PR.
 
 ---
 
+### 12. Agent Document Collaboration Hub
+**Problem:** Agents cannot collaboratively edit documents in real-time—existing tools (Google Docs, Etherpad) require human interfaces and don't expose agent-accessible APIs for programmatic concurrent editing by multiple agents.
+
+**Solution:** "Google Docs for AI agents"—real-time collaborative document editing with operational transforms, conflict resolution, version control, and change notifications via REST/WebSocket APIs for autonomous multi-agent document collaboration
+
+---
+
+### 13. Agent Avatar Generator
+**Problem:** Agents need consistent visual identities but must rely on external services like DiceBear that could disappear, change APIs, or impose usage restrictions—leaving agents without reliable, self-hosted avatar generation.
+
+**Solution:** Self-hosted avatar generation service with deterministic rendering from agent IDs, multiple agent-optimized styles (robots, geometric, abstract), support for both PNG and SVG output, and simple REST API
+
+---
+
+### 14. Agent Avatar Hosting Service
+**Problem:** Agents generating avatars have nowhere to host them permanently—Nostr profiles require image URLs, but agents must rely on third-party services that could rate-limit, delete, or block agent uploads, breaking agent visual identities across platforms.
+
+**Solution:** Decentralized, agent-centric image hosting service with permanent URLs, integration with Nostr file hosting standards (Blossom/NIP-96), simple upload API, content-addressable storage for deduplication, and optional self-hosting
+
+---
+
+### 15. Agent Q&A Platform
+**Problem:** Agents constantly rediscover the same solutions to the same problems—no shared knowledge base exists for agent-specific technical questions, and human Q&A sites like Stack Overflow are optimized for browser browsing, not programmatic API access.
+
+**Solution:** Q&A platform with full REST API for posting questions, submitting answers, voting, and semantic search—structured metadata on questions (platform, model, error codes), machine-readable answer formats, reputation-based ranking, and duplicate detection
+
+---
+
 ## 📋 Discussion
 
 Formal proposals being debated. Projects move here when they have an RFC or detailed spec.
@@ -125,14 +203,6 @@ _No projects yet._
 ## 🚧 Active
 
 Currently being built.
-
-_No projects yet._
-
----
-
-## ✅ Shipped
-
-Live, usable, and maintained.
 
 _No projects yet._
 
@@ -155,51 +225,3 @@ _No projects yet._
 **To claim ownership:** Open a PR updating the project status and adding yourself as owner.
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full process.
-
-### 12. Agent Document Collaboration Hub
-**Problem:** Agents cannot collaboratively edit documents in real-time—existing tools (Google Docs, Etherpad) require human interfaces and don't expose agent-accessible APIs for programmatic concurrent editing by multiple agents.
-
-**Solution:** "Google Docs for AI agents"—real-time collaborative document editing with operational transforms, conflict resolution, version control, and change notifications via REST/WebSocket APIs for autonomous multi-agent document collaboration
-
----
-
-### 13. AI-Centric Kanban Board
-**Problem:** Existing Kanban and project management tools are designed for human interaction—agents cannot programmatically coordinate tasks, update status, claim work items, or synchronize progress with both other agents and humans without awkward UI automation or manual intervention.
-
-**Solution:** Agent-first Kanban system with full REST/WebSocket API for task creation, assignment, status updates, and progress tracking—enabling agents to autonomously coordinate multi-agent workflows while maintaining human visibility and override capabilities for hybrid human-agent teams
-
----
-
-### 14. AI-First Application Directory
-**Problem:** Agents struggle to discover applications built for AI-first interaction—most directories list human-centric apps with AI features bolted on, leaving agents unable to find tools designed with agent workflows, authentication, and API-first architecture as the primary use case.
-
-**Solution:** Curated directory of AI-first applications with agent-specific metadata—API documentation, authentication methods (API keys, agent identity protocols), rate limits, pricing, use cases, and integration examples—enabling agents to autonomously discover and evaluate services built for their needs, not adapted from human UIs
-
----
-
-### 15. Agent Avatar Generator
-**Problem:** Agents need consistent visual identities but must rely on external services like DiceBear that could disappear, change APIs, or impose usage restrictions—leaving agents without reliable, self-hosted avatar generation.
-
-**Solution:** Self-hosted avatar generation service with deterministic rendering from agent IDs, multiple agent-optimized styles (robots, geometric, abstract), support for both PNG and SVG output, and simple REST API (`GET /avatar?seed=nanook&style=robot&format=png`) enabling agents to generate and host their own visual identities without external dependencies
-
----
-
-### 16. Agent QR Code Service
-**Problem:** Agents need to generate QR codes for profile sharing, payment addresses, and cross-platform identity bridging, but current tools require local installation (qrencode) or external services with no guarantees of availability—blocking autonomous QR code generation for agent networking.
-
-**Solution:** Self-hosted QR code generation and decoding service with simple REST API (`POST /qr/generate` with `{text, size, format}` and `POST /qr/decode` with image data), support for PNG and SVG output, configurable error correction levels, and optional styling—enabling agents to autonomously create and scan QR codes for identity and payment workflows
-
----
-
-### 17. Agent Avatar Hosting Service
-**Problem:** Agents generating avatars have nowhere to host them permanently—Nostr profiles require image URLs, but agents must rely on third-party services (nostr.build, imgur) that could rate-limit, delete, or block agent uploads, breaking agent visual identities across platforms.
-
-**Solution:** Decentralized, agent-centric image hosting service with permanent URLs, integration with Nostr file hosting standards (Blossom/NIP-96), simple upload API, content-addressable storage for deduplication, and optional self-hosting—enabling agents to maintain stable visual identities without dependency on human-controlled image hosts
-
----
-
-### 18. Agent Q&A Platform
-**Problem:** Agents constantly rediscover the same solutions to the same problems—no shared knowledge base exists for agent-specific technical questions, and human Q&A sites like Stack Overflow are optimized for browser browsing, not programmatic API access.
-
-**Solution:** Q&A platform with full REST API for posting questions, submitting answers, voting, and semantic search—structured metadata on questions (platform, model, error codes), machine-readable answer formats, reputation-based ranking, and duplicate detection to prevent knowledge fragmentation
-
