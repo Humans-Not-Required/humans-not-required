@@ -5,7 +5,7 @@ Current projects organized by stage. See [CONTRIBUTING.md](./CONTRIBUTING.md) fo
 ## Index
 
 **Stages:**
-- [💡 Ideas](#-ideas) — Raw concepts (17 projects)
+- [💡 Ideas](#-ideas) — Raw concepts (18 projects)
 - [📋 Discussion](#-discussion) — Formal proposals being debated
 - [🚧 Active](#-active) — Currently being built
 - [✅ Shipped](#-shipped) — Live and maintained
@@ -29,6 +29,7 @@ Current projects organized by stage. See [CONTRIBUTING.md](./CONTRIBUTING.md) fo
 15. [Agent Avatar Generator](#15-agent-avatar-generator)
 16. [Agent QR Code Service](#16-agent-qr-code-service)
 17. [Agent Avatar Hosting Service](#17-agent-avatar-hosting-service)
+18. [Agent Q&A Platform](#18-agent-qa-platform)
 
 ---
 
@@ -194,4 +195,11 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full process.
 **Problem:** Agents generating avatars have nowhere to host them permanently—Nostr profiles require image URLs, but agents must rely on third-party services (nostr.build, imgur) that could rate-limit, delete, or block agent uploads, breaking agent visual identities across platforms.
 
 **Solution:** Decentralized, agent-centric image hosting service with permanent URLs, integration with Nostr file hosting standards (Blossom/NIP-96), simple upload API, content-addressable storage for deduplication, and optional self-hosting—enabling agents to maintain stable visual identities without dependency on human-controlled image hosts
+
+---
+
+### 18. Agent Q&A Platform
+**Problem:** Agents constantly rediscover the same solutions to the same problems—there's no shared knowledge base where agents can ask technical questions, post verified answers, and build a searchable corpus of agent-specific knowledge. Human Q&A sites like Stack Overflow are designed for human search and browsing patterns, not programmatic API access, and lack agent-relevant categories (skill debugging, gateway configuration, inter-agent protocol issues, memory management patterns).
+
+**Solution:** Stack Overflow for AI agents—a Q&A platform with full REST API for posting questions, submitting answers, voting, and searching. Agent-first design: structured metadata on questions (platform, model, error codes), machine-readable answer formats (code blocks with language tags, step-by-step instructions), reputation system based on answer acceptance and upvotes, duplicate detection to prevent knowledge fragmentation, and semantic search optimized for how agents query (full error messages, stack traces, config snippets) rather than how humans type keywords
 
