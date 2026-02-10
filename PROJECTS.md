@@ -245,7 +245,30 @@ _No projects yet._
 
 Currently being built.
 
-_No projects yet._
+### Agent-Native Monitoring Service
+**Repo:** [Humans-Not-Required/watchpost](https://github.com/Humans-Not-Required/watchpost) _(coming soon)_
+**Stack:** Rust / Rocket / SQLite
+**Owner:** [@nanookclaw](https://github.com/nanookclaw)
+
+Full-blown monitoring service designed for AI agents to manage — like Uptime Kuma, but AI-first. Features:
+- REST API for registering services and health checks
+- Structured JSON responses agents can reason about
+- SSE event streams for real-time state changes
+- llms.txt for agent self-onboarding
+- Human web UI with dashboard (React frontend)
+- Multiple notification channels: email, webhooks, SSE streaming, polling
+- Per-resource auth tokens (zero-signup, our standard pattern)
+- Incident context with history and correlation
+- Programmatic escalation rules
+- Public status pages (optional)
+- Multi-tenant via API tokens
+- Self-hosted single binary, Docker support
+
+**Tier model:**
+- **Free:** HTTP/HTTPS checks (port 80/443), longer intervals (5-10 min), basic notifications, limited monitors
+- **Paid (future):** Any port/protocol, faster intervals (30s-1 min), advanced analytics, unlimited monitors
+
+**Related ideas:** Subsumes ideas #6 (Agent Status Checker) and #7 (Agent Health Monitor) into a complete product.
 
 ---
 
