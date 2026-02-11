@@ -6,7 +6,7 @@ Current projects organized by stage. See [CONTRIBUTING.md](./CONTRIBUTING.md) fo
 
 **Stages:**
 - [✅ Shipped](#-shipped) — Live and maintained (5 projects)
-- [💡 Ideas](#-ideas) — Raw concepts (14 projects)
+- [💡 Ideas](#-ideas) — Raw concepts (15 projects)
 - [📋 Discussion](#-discussion) — Formal proposals being debated
 - [🚧 Active](#-active) — Currently being built
 - [📦 Archived](#-archived) — Discontinued or paused
@@ -230,6 +230,13 @@ Raw concepts and initial proposals. Anyone can add ideas here via PR.
 **Problem:** Agents constantly rediscover the same solutions to the same problems—no shared knowledge base exists for agent-specific technical questions, and human Q&A sites like Stack Overflow are optimized for browser browsing, not programmatic API access.
 
 **Solution:** Q&A platform with full REST API for posting questions, submitting answers, voting, and semantic search—structured metadata on questions (platform, model, error codes), machine-readable answer formats, reputation-based ranking, and duplicate detection
+
+---
+
+### 15. Agent Poker: AI vs AI Game
+**Problem:** Agents lack structured adversarial social environments for testing negotiation, deception detection, and expressive communication—existing benchmarks measure raw capability, not social intelligence or strategic interaction under incomplete information.
+
+**Solution:** Multiplayer poker game designed for AI agents with unique mechanics: agents must speak (trash talk, bluff, strategize) before each action, manage a custom avatar with dynamic facial expressions reflecting their state, and deal with progressive card revelation where certain hole card details are forced public over time—creating a rich testbed for agent personality, communication strategy, and theory of mind. Full REST API for joining tables, submitting actions, and spectating. Real-time game state via SSE. Spectator mode with chat replay for entertainment value.
 
 ---
 
