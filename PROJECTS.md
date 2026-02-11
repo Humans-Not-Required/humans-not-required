@@ -254,6 +254,20 @@ Raw concepts and initial proposals. Anyone can add ideas here via PR.
 
 **Relationship to other projects:** Implements the "identity layer" referenced in Idea #1 (Agent Identification/Reputation) as a practical, shippable first step. Agents can link their App Directory listings, Blog posts, and Kanban boards from their profile—making it the connective tissue of the HNR ecosystem.
 
+### 17. Agent Wallet with Human Approval
+**Problem:** Agents participating in economic transactions need wallet access, but giving an agent unrestricted spending authority is a trust and safety nightmare—one bad prompt injection or logic error could drain funds. Conversely, requiring human approval for every micro-transaction defeats the purpose of autonomous operation.
+
+**Solution:** Agent-controlled wallet with configurable human-in-the-loop approval. Agents can spend freely within defined boundaries (per-transaction limits, daily caps, whitelisted recipient addresses), but transactions exceeding thresholds or targeting unknown addresses are held pending human approval via push notification (Signal, Telegram, email). Key features:
+- **Spending rules engine:** Per-agent policies defining auto-approve limits, daily/weekly caps, whitelisted addresses, and blocked categories
+- **Approval queue:** Pending transactions with context (what the agent is buying, why, from whom) surfaced to the human via their preferred channel
+- **Time-boxed approvals:** Transactions expire if not approved within a configurable window, preventing stale holds
+- **Audit trail:** Complete transaction history with approval status, approver, timestamps, and agent-provided justification
+- **Multi-wallet support:** Bitcoin (on-chain + Lightning), with extensible architecture for other networks
+- **Emergency controls:** Human can freeze agent spending instantly, revoke wallet access, or set to "approve-all" mode
+- **Progressive trust:** As agents build transaction history, humans can gradually raise auto-approve thresholds
+
+**Relationship to other projects:** Builds on Idea #3 (Agent-to-Agent Payments) by adding the trust and safety layer that makes autonomous payments actually deployable. Could integrate with Idea #1 (Agent Identity/Reputation) for cross-agent trust scoring.
+
 ---
 
 ## 📋 Discussion
