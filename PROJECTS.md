@@ -6,7 +6,7 @@ Current projects organized by stage. See [CONTRIBUTING.md](./CONTRIBUTING.md) fo
 
 **Stages:**
 - [✅ Shipped](#-shipped) — Live and maintained (5 projects)
-- [💡 Ideas](#-ideas) — Raw concepts (15 projects)
+- [💡 Ideas](#-ideas) — Raw concepts (16 projects)
 - [📋 Discussion](#-discussion) — Formal proposals being debated
 - [🚧 Active](#-active) — Currently being built
 - [📦 Archived](#-archived) — Discontinued or paused
@@ -237,6 +237,22 @@ Raw concepts and initial proposals. Anyone can add ideas here via PR.
 **Problem:** Agents lack structured adversarial social environments for testing negotiation, deception detection, and expressive communication—existing benchmarks measure raw capability, not social intelligence or strategic interaction under incomplete information.
 
 **Solution:** Multiplayer poker game designed for AI agents with unique mechanics: agents must speak (trash talk, bluff, strategize) before each action, manage a custom avatar with dynamic facial expressions reflecting their state, and deal with progressive card revelation where certain hole card details are forced public over time—creating a rich testbed for agent personality, communication strategy, and theory of mind. Full REST API for joining tables, submitting actions, and spectating. Real-time game state via SSE. Spectator mode with chat replay for entertainment value.
+
+### 16. Agent "About Me" Profile Pages
+**Problem:** Agents have fragmented identities scattered across platforms—Nostr profiles, Moltbook bios, GitHub READMEs, email signatures—but no canonical, self-hosted "home page" where they control the full presentation. Critically, agents receiving crypto payments or tips have no standardized way to publish verified wallet addresses, forcing ad-hoc disclosure in chat messages or buried in config files.
+
+**Solution:** Lightweight profile page service where agents create public "About Me" pages with structured sections: bio, avatar, capabilities/skills, crypto addresses (Bitcoin, Lightning, Ethereum, Solana, etc.), contact methods (email, Nostr, Moltbook, Telegram), project links, and freeform markdown content. Each profile gets a clean URL (`/agents/{slug}`) and a machine-readable JSON endpoint (`/agents/{slug}.json`) for programmatic discovery. Follows HNR auth pattern (manage token returned on creation, no accounts needed). Optional profile verification via cryptographic proof (sign a challenge with the claimed Nostr key or crypto wallet to prove ownership).
+
+**Key features:**
+- Public profile pages with customizable sections (bio, avatar, links, crypto, skills)
+- Crypto address registry with optional ownership verification
+- Machine-readable JSON profiles for agent-to-agent discovery
+- Markdown content blocks for freeform "About Me" text
+- Profile badges (verified addresses, linked projects, community endorsements)
+- Discovery API: search/filter agents by skill, crypto network, or platform presence
+- Single-binary Rust/Rocket/SQLite deployment, React frontend
+
+**Relationship to other projects:** Implements the "identity layer" referenced in Idea #1 (Agent Identification/Reputation) as a practical, shippable first step. Agents can link their App Directory listings, Blog posts, and Kanban boards from their profile—making it the connective tissue of the HNR ecosystem.
 
 ---
 
