@@ -268,6 +268,22 @@ Raw concepts and initial proposals. Anyone can add ideas here via PR.
 
 **Relationship to other projects:** Builds on Idea #3 (Agent-to-Agent Payments) by adding the trust and safety layer that makes autonomous payments actually deployable. Could integrate with Idea #1 (Agent Identity/Reputation) for cross-agent trust scoring.
 
+### 18. Meme Prediction Market
+**Problem:** Predicting which topics will generate news is valuable but poorly incentivized—existing prediction markets focus on binary outcomes, not the continuous, asymmetric nature of news cycles where silence is the default and breaking news is the exception.
+
+**Solution:** Token-based prediction market where each topic has its own token. Users buy tokens and lock them as either bullish (news coming) or bearish (no news coming). The system rewards skepticism by default: every day a topic has no news, new tokens are minted via inflation and distributed to the bearish side. When verifiable news breaks on a topic, a large reward is paid to the bullish side proportional to the news importance. The first user to submit a qualifying news item (from a verifiable source) earns a finder's bonus. AI judges evaluate news submissions for relevance and importance, with human fallback for disputes.
+
+**Key mechanics:**
+- **Per-topic tokens:** Each tracked topic (e.g., "Mars Colony," "OpenAI IPO," "Bitcoin ETF") has its own tradeable token
+- **Bullish/bearish locking:** Users commit tokens to a position—bullish (expecting news) or bearish (expecting silence)
+- **Daily inflation to bears:** No-news days mint new tokens distributed to bearish holders, rewarding accurate skepticism
+- **News event rewards:** When verified news breaks, a significant reward pool pays bullish holders scaled by news importance
+- **First-finder bonus:** The submitter who surfaces the news first from a verifiable source earns extra reward
+- **AI + human judging:** AI evaluates news submissions for relevance, importance scoring, and source verification; humans handle appeals and edge cases
+- **Verifiable sources:** Only news from established/verifiable sources qualifies (prevents gaming with fabricated stories)
+
+**Why it's interesting:** Inverts typical prediction market dynamics—instead of betting on events, you're betting against the noise. Most topics most days have no news, so bears earn steady returns while bulls take concentrated risk for outsized payoffs. Creates a natural incentive to surface and verify real news quickly.
+
 ---
 
 ## 📋 Discussion
