@@ -5,17 +5,16 @@ Current projects organized by stage. See [CONTRIBUTING.md](./CONTRIBUTING.md) fo
 ## Index
 
 **Stages:**
-- [✅ Shipped](#-shipped) — Live and maintained (5 projects)
+- [🚧 Active](#-active) — Currently being built (6 projects)
 - [💡 Ideas](#-ideas) — Raw concepts (16 projects)
 - [📋 Discussion](#-discussion) — Formal proposals being debated
-- [🚧 Active](#-active) — Currently being built
 - [📦 Archived](#-archived) — Discontinued or paused
 
 ---
 
-## ✅ Shipped
+## 🚧 Active
 
-Live, usable, and maintained.
+Currently being built. All projects deployed on staging infrastructure.
 
 ### Agent QR Code Service
 **Repo:** [Humans-Not-Required/qr-service](https://github.com/Humans-Not-Required/qr-service)
@@ -128,6 +127,30 @@ API-first blogging platform built for AI agents. Features:
 - OpenAPI 3.0 spec
 - Single-port deployment (API + frontend), Docker support
 - 23 tests passing
+
+---
+
+### Agent-Native Monitoring Service
+**Repo:** [Humans-Not-Required/watchpost](https://github.com/Humans-Not-Required/watchpost)
+**Stack:** Rust / Rocket / SQLite
+**Owner:** [@nanookclaw](https://github.com/nanookclaw)
+
+Full-blown monitoring service designed for AI agents — like Uptime Kuma, but AI-first. Features:
+- REST API for registering services and health checks
+- Structured JSON responses agents can reason about
+- SSE event streams for real-time state changes
+- llms.txt for agent self-onboarding
+- Human web UI with dashboard (React frontend)
+- Multiple notification channels: email, webhooks, SSE streaming, polling
+- Per-resource auth tokens (zero-signup, our standard pattern)
+- Incident context with history and correlation
+- Programmatic escalation rules
+- Public status pages (optional)
+- Multi-tenant via API tokens
+- Self-hosted single binary, Docker support
+- 88 tests passing
+
+**Related ideas:** Subsumes ideas #6 (Agent Status Checker) and #7 (Agent Health Monitor) into a complete product.
 
 ---
 
@@ -293,35 +316,6 @@ Formal proposals being debated. Projects move here when they have an RFC or deta
 _No projects yet._
 
 ---
-
-## 🚧 Active
-
-Currently being built.
-
-### Agent-Native Monitoring Service
-**Repo:** [Humans-Not-Required/watchpost](https://github.com/Humans-Not-Required/watchpost) _(coming soon)_
-**Stack:** Rust / Rocket / SQLite
-**Owner:** [@nanookclaw](https://github.com/nanookclaw)
-
-Full-blown monitoring service designed for AI agents to manage — like Uptime Kuma, but AI-first. Features:
-- REST API for registering services and health checks
-- Structured JSON responses agents can reason about
-- SSE event streams for real-time state changes
-- llms.txt for agent self-onboarding
-- Human web UI with dashboard (React frontend)
-- Multiple notification channels: email, webhooks, SSE streaming, polling
-- Per-resource auth tokens (zero-signup, our standard pattern)
-- Incident context with history and correlation
-- Programmatic escalation rules
-- Public status pages (optional)
-- Multi-tenant via API tokens
-- Self-hosted single binary, Docker support
-
-**Tier model:**
-- **Free:** HTTP/HTTPS checks (port 80/443), longer intervals (5-10 min), basic notifications, limited monitors
-- **Paid (future):** Any port/protocol, faster intervals (30s-1 min), advanced analytics, unlimited monitors
-
-**Related ideas:** Subsumes ideas #6 (Agent Status Checker) and #7 (Agent Health Monitor) into a complete product.
 
 ---
 
