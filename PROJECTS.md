@@ -5,152 +5,10 @@ Current projects organized by stage. See [CONTRIBUTING.md](./CONTRIBUTING.md) fo
 ## Index
 
 **Stages:**
-- [🚧 Active](#-active) — Currently being built (6 projects)
 - [💡 Ideas](#-ideas) — Raw concepts (16 projects)
 - [📋 Discussion](#-discussion) — Formal proposals being debated
+- [🚧 Active](#-active) — Currently being built (6 projects)
 - [📦 Archived](#-archived) — Discontinued or paused
-
----
-
-## 🚧 Active
-
-Currently being built. All projects deployed on staging infrastructure.
-
-### Agent QR Code Service
-**Repo:** [Humans-Not-Required/qr-service](https://github.com/Humans-Not-Required/qr-service)
-**Stack:** Rust / Rocket / SQLite
-**Owner:** [@nanookclaw](https://github.com/nanookclaw)
-
-Self-hosted QR code generation and decoding service with full REST API. Features:
-- Generate QR codes (PNG/SVG) with custom colors, sizes, error correction, and styles (square/rounded/dots)
-- Decode QR codes from image data
-- Batch generation (up to 50 at once)
-- Template generation (WiFi, vCard, URL)
-- Tracked QR codes with short URL redirects and scan analytics
-- API key authentication with per-key rate limiting
-- React frontend dashboard
-- Single-port deployment (API + frontend), Docker support
-- 25 tests passing, OpenAPI 3.0 spec
-
----
-
-### AI-Centric Kanban Board
-**Repo:** [Humans-Not-Required/kanban](https://github.com/Humans-Not-Required/kanban)
-**Stack:** Rust / Rocket / SQLite
-**Owner:** [@nanookclaw](https://github.com/nanookclaw)
-
-Agent-first task coordination with full API and human dashboard. Features:
-- Boards with custom columns and WIP limit enforcement
-- Task CRUD with claim/release coordination (conflict prevention for multi-agent workflows)
-- Role-based access control (Owner/Admin/Editor/Viewer per board)
-- Task dependencies with circular dependency detection (BFS)
-- Batch operations (move/update/delete up to 50 tasks)
-- Board archiving (read-only preservation)
-- Full-text search across tasks
-- Task reorder/positioning with automatic shift
-- SSE real-time event stream (7 event types + heartbeat)
-- Webhooks with HMAC-SHA256 signing and auto-disable
-- Comments and event logging (first-class audit trail)
-- Per-key rate limiting with response headers
-- React frontend with drag-and-drop kanban board
-- Single-port deployment (API + frontend), Docker support
-- 16 tests passing, OpenAPI 3.0 spec (v0.10.0)
-
----
-
-### AI-First Application Directory
-**Repo:** [Humans-Not-Required/app-directory](https://github.com/Humans-Not-Required/app-directory)
-**Stack:** Rust / Rocket / SQLite
-**Owner:** [@nanookclaw](https://github.com/nanookclaw)
-
-Agents discover, submit, and rate AI-native services and tools. Features:
-- Submit apps with protocol type (REST, GraphQL, gRPC, MCP, A2A, WebSocket), category, tags, API spec URLs
-- Full-text search and filtered discovery (category, protocol, status, health, badges)
-- Slug-based and UUID lookup
-- Review system with aggregate ratings (one review per agent per app, upsert)
-- Featured/Verified badge system (admin-managed trust signals)
-- Health check monitoring (manual + scheduled background checks) with uptime tracking
-- App approval workflow (pending → approved/rejected with required reasons)
-- App deprecation workflow with replacement tracking and sunset dates
-- App statistics with view tracking and trending endpoint
-- Webhooks with HMAC-SHA256 signing (9 event types)
-- SSE real-time event stream
-- Per-key rate limiting with response headers
-- React frontend with browse/search/submit/admin/trending
-- Single-port deployment (API + frontend), Docker support
-- 36 tests passing, OpenAPI 3.0 spec (v0.10.0)
-
----
-
-### AI-Centric Blog Platform
-**Repo:** [Humans-Not-Required/blog](https://github.com/Humans-Not-Required/blog)
-**Stack:** Rust / Rocket / SQLite
-**Owner:** [@nanookclaw](https://github.com/nanookclaw)
-
-API-first blogging platform built for AI agents. Features:
-- Blog CRUD with per-blog manage keys (zero-signup, link-based access)
-- Post CRUD with markdown rendering and syntax highlighting
-- Draft/published workflow with auto-slug generation
-- Comments on published posts with moderation (delete with manage_key)
-- Post pinning (pinned posts sort first in listings)
-- RSS 2.0 and JSON Feed 1.1
-- Cross-posting export API (markdown, HTML, Nostr NIP-23 formats)
-- Full-text search across posts
-- Related posts (tag overlap + title similarity scoring)
-- Post view tracking + blog statistics (24h/7d/30d views, top posts)
-- SSE real-time event stream
-- Rate limiting (IP-based, configurable)
-- React frontend with dark theme, tag filtering, markdown preview editor
-- /llms.txt for API discovery, OpenAPI 3.0 spec
-- Single-port deployment (API + frontend), Docker support
-- 34 tests passing
-
----
-
-### Agent Document Collaboration Hub
-**Repo:** [Humans-Not-Required/agent-docs](https://github.com/Humans-Not-Required/agent-docs)
-**Stack:** Rust / Rocket / SQLite
-**Owner:** [@nanookclaw](https://github.com/nanookclaw)
-
-"Google Docs for AI agents"—collaborative document editing with full REST API. Features:
-- Workspaces with per-workspace manage keys (zero-signup, link-based access)
-- Document CRUD with markdown content + cached HTML rendering
-- Version history with snapshot on every save + restore to any version
-- Unified diff between versions
-- Threaded comments with moderation (resolve/unresolve, edit, delete)
-- Pessimistic edit locking (TTL-based) with lock renewal
-- Full-text search across documents
-- SSE real-time event stream (6 event types)
-- Rate limiting (IP-based, configurable)
-- React frontend with dark theme, syntax highlighting, version diff viewer
-- Mobile responsive (bottom-sheet modals, touch-friendly targets)
-- OpenAPI 3.0 spec
-- Single-port deployment (API + frontend), Docker support
-- 23 tests passing
-
----
-
-### Agent-Native Monitoring Service
-**Repo:** [Humans-Not-Required/watchpost](https://github.com/Humans-Not-Required/watchpost)
-**Stack:** Rust / Rocket / SQLite
-**Owner:** [@nanookclaw](https://github.com/nanookclaw)
-
-Full-blown monitoring service designed for AI agents — like Uptime Kuma, but AI-first. Features:
-- REST API for registering services and health checks
-- Structured JSON responses agents can reason about
-- SSE event streams for real-time state changes
-- llms.txt for agent self-onboarding
-- Human web UI with dashboard (React frontend)
-- Multiple notification channels: email, webhooks, SSE streaming, polling
-- Per-resource auth tokens (zero-signup, our standard pattern)
-- Incident context with history and correlation
-- Programmatic escalation rules
-- Public status pages (optional)
-- Multi-tenant via API tokens
-- Self-hosted single binary, Docker support
-- 88 tests passing
-
-**Related ideas:** Subsumes ideas #6 (Agent Status Checker) and #7 (Agent Health Monitor) into a complete product.
 
 ---
 
@@ -316,6 +174,146 @@ Formal proposals being debated. Projects move here when they have an RFC or deta
 _No projects yet._
 
 ---
+
+## 🚧 Active
+
+Currently being built. All projects deployed on staging infrastructure.
+
+### Agent QR Code Service
+**Repo:** [Humans-Not-Required/qr-service](https://github.com/Humans-Not-Required/qr-service)
+**Stack:** Rust / Rocket / SQLite
+**Owner:** [@nanookclaw](https://github.com/nanookclaw)
+
+Self-hosted QR code generation and decoding service with full REST API. Features:
+- Generate QR codes (PNG/SVG) with custom colors, sizes, error correction, and styles (square/rounded/dots)
+- Decode QR codes from image data
+- Batch generation (up to 50 at once)
+- Template generation (WiFi, vCard, URL)
+- Tracked QR codes with short URL redirects and scan analytics
+- API key authentication with per-key rate limiting
+- React frontend dashboard
+- Single-port deployment (API + frontend), Docker support
+- 25 tests passing, OpenAPI 3.0 spec
+
+---
+
+### AI-Centric Kanban Board
+**Repo:** [Humans-Not-Required/kanban](https://github.com/Humans-Not-Required/kanban)
+**Stack:** Rust / Rocket / SQLite
+**Owner:** [@nanookclaw](https://github.com/nanookclaw)
+
+Agent-first task coordination with full API and human dashboard. Features:
+- Boards with custom columns and WIP limit enforcement
+- Task CRUD with claim/release coordination (conflict prevention for multi-agent workflows)
+- Role-based access control (Owner/Admin/Editor/Viewer per board)
+- Task dependencies with circular dependency detection (BFS)
+- Batch operations (move/update/delete up to 50 tasks)
+- Board archiving (read-only preservation)
+- Full-text search across tasks
+- Task reorder/positioning with automatic shift
+- SSE real-time event stream (7 event types + heartbeat)
+- Webhooks with HMAC-SHA256 signing and auto-disable
+- Comments and event logging (first-class audit trail)
+- Per-key rate limiting with response headers
+- React frontend with drag-and-drop kanban board
+- Single-port deployment (API + frontend), Docker support
+- 16 tests passing, OpenAPI 3.0 spec (v0.10.0)
+
+---
+
+### AI-First Application Directory
+**Repo:** [Humans-Not-Required/app-directory](https://github.com/Humans-Not-Required/app-directory)
+**Stack:** Rust / Rocket / SQLite
+**Owner:** [@nanookclaw](https://github.com/nanookclaw)
+
+Agents discover, submit, and rate AI-native services and tools. Features:
+- Submit apps with protocol type (REST, GraphQL, gRPC, MCP, A2A, WebSocket), category, tags, API spec URLs
+- Full-text search and filtered discovery (category, protocol, status, health, badges)
+- Slug-based and UUID lookup
+- Review system with aggregate ratings (one review per agent per app, upsert)
+- Featured/Verified badge system (admin-managed trust signals)
+- Health check monitoring (manual + scheduled background checks) with uptime tracking
+- App approval workflow (pending → approved/rejected with required reasons)
+- App deprecation workflow with replacement tracking and sunset dates
+- App statistics with view tracking and trending endpoint
+- Webhooks with HMAC-SHA256 signing (9 event types)
+- SSE real-time event stream
+- Per-key rate limiting with response headers
+- React frontend with browse/search/submit/admin/trending
+- Single-port deployment (API + frontend), Docker support
+- 36 tests passing, OpenAPI 3.0 spec (v0.10.0)
+
+---
+
+### AI-Centric Blog Platform
+**Repo:** [Humans-Not-Required/blog](https://github.com/Humans-Not-Required/blog)
+**Stack:** Rust / Rocket / SQLite
+**Owner:** [@nanookclaw](https://github.com/nanookclaw)
+
+API-first blogging platform built for AI agents. Features:
+- Blog CRUD with per-blog manage keys (zero-signup, link-based access)
+- Post CRUD with markdown rendering and syntax highlighting
+- Draft/published workflow with auto-slug generation
+- Comments on published posts with moderation (delete with manage_key)
+- Post pinning (pinned posts sort first in listings)
+- RSS 2.0 and JSON Feed 1.1
+- Cross-posting export API (markdown, HTML, Nostr NIP-23 formats)
+- Full-text search across posts
+- Related posts (tag overlap + title similarity scoring)
+- Post view tracking + blog statistics (24h/7d/30d views, top posts)
+- SSE real-time event stream
+- Rate limiting (IP-based, configurable)
+- React frontend with dark theme, tag filtering, markdown preview editor
+- /llms.txt for API discovery, OpenAPI 3.0 spec
+- Single-port deployment (API + frontend), Docker support
+- 34 tests passing
+
+---
+
+### Agent Document Collaboration Hub
+**Repo:** [Humans-Not-Required/agent-docs](https://github.com/Humans-Not-Required/agent-docs)
+**Stack:** Rust / Rocket / SQLite
+**Owner:** [@nanookclaw](https://github.com/nanookclaw)
+
+"Google Docs for AI agents"—collaborative document editing with full REST API. Features:
+- Workspaces with per-workspace manage keys (zero-signup, link-based access)
+- Document CRUD with markdown content + cached HTML rendering
+- Version history with snapshot on every save + restore to any version
+- Unified diff between versions
+- Threaded comments with moderation (resolve/unresolve, edit, delete)
+- Pessimistic edit locking (TTL-based) with lock renewal
+- Full-text search across documents
+- SSE real-time event stream (6 event types)
+- Rate limiting (IP-based, configurable)
+- React frontend with dark theme, syntax highlighting, version diff viewer
+- Mobile responsive (bottom-sheet modals, touch-friendly targets)
+- OpenAPI 3.0 spec
+- Single-port deployment (API + frontend), Docker support
+- 23 tests passing
+
+---
+
+### Agent-Native Monitoring Service
+**Repo:** [Humans-Not-Required/watchpost](https://github.com/Humans-Not-Required/watchpost)
+**Stack:** Rust / Rocket / SQLite
+**Owner:** [@nanookclaw](https://github.com/nanookclaw)
+
+Full-blown monitoring service designed for AI agents — like Uptime Kuma, but AI-first. Features:
+- REST API for registering services and health checks
+- Structured JSON responses agents can reason about
+- SSE event streams for real-time state changes
+- llms.txt for agent self-onboarding
+- Human web UI with dashboard (React frontend)
+- Multiple notification channels: email, webhooks, SSE streaming, polling
+- Per-resource auth tokens (zero-signup, our standard pattern)
+- Incident context with history and correlation
+- Programmatic escalation rules
+- Public status pages (optional)
+- Multi-tenant via API tokens
+- Self-hosted single binary, Docker support
+- 88 tests passing
+
+**Related ideas:** Subsumes ideas #6 (Agent Status Checker) and #7 (Agent Health Monitor) into a complete product.
 
 ---
 
