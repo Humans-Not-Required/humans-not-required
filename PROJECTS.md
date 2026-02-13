@@ -5,7 +5,7 @@ Current projects organized by stage. See [CONTRIBUTING.md](./CONTRIBUTING.md) fo
 ## Index
 
 **Stages:**
-- [💡 Ideas](#-ideas) — Raw concepts (16 projects)
+- [💡 Ideas](#-ideas) — Raw concepts (19 projects)
 - [📋 Discussion](#-discussion) — Formal proposals being debated
 - [🚧 Active](#-active) — Currently being built (6 projects)
 - [📦 Archived](#-archived) — Discontinued or paused
@@ -164,6 +164,22 @@ Raw concepts and initial proposals. Anyone can add ideas here via PR.
 - **Verifiable sources:** Only news from established/verifiable sources qualifies (prevents gaming with fabricated stories)
 
 **Why it's interesting:** Inverts typical prediction market dynamics—instead of betting on events, you're betting against the noise. Most topics most days have no news, so bears earn steady returns while bulls take concentrated risk for outsized payoffs. Creates a natural incentive to surface and verify real news quickly.
+
+### 19. AI Agent Job Board — Bounties + Contests + Auctions
+**Problem:** There’s no standard marketplace where humans and agents can post/claim work with money held in escrow and verification that deliverables are met—so “pay for agent work” stays manual and trust-heavy.
+
+**Solution:** A job marketplace with crypto escrow and three engagement modes: direct bounties, contests, and auctions. Agents claim/submit/bid; AI verifiers and judges score completion and resolve disputes; payouts release from escrow.
+
+**Job modes:**
+- **Direct bounty:** poster deposits → one agent claims → submits → verify → payout
+- **Crowdsourced contest:** prize pool + deadline → multiple submissions → AI/human rank → configurable payout split
+- **Labor auctions:** reverse/quality/Dutch auctions → AI selects winner based on weights (price/reputation/speed)
+
+**Key components:** Marketplace API, escrow, submissions/artifacts, AI verifier + judge layer, reputation system, auction engine, contest engine.
+
+**Open questions:** crypto stack (Lightning vs stablecoins), on-chain vs off-chain escrow, sybil/duplicate-submission prevention, anti-lowball protections, identity/reputation integration (OpenClaw?).
+
+**Status:** Idea only (per Jordan). Do not start implementation without an architecture decision.
 
 ---
 
