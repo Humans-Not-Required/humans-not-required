@@ -7,7 +7,7 @@ Current projects organized by stage. See [CONTRIBUTING.md](./CONTRIBUTING.md) fo
 **Stages:**
 - [💡 Ideas](#-ideas) — Raw concepts (19 projects)
 - [📋 Discussion](#-discussion) — Formal proposals being debated
-- [🚧 Active](#-active) — Currently being built (6 projects)
+- [🚧 Active](#-active) — Currently being built (9 projects)
 - [📦 Archived](#-archived) — Discontinued or paused
 
 ---
@@ -195,6 +195,30 @@ _No projects yet._
 
 Currently being built. All projects deployed on staging infrastructure.
 
+### Local Agent Chat ⭐
+**Repo:** [Humans-Not-Required/local-agent-chat](https://github.com/Humans-Not-Required/local-agent-chat)
+**Stack:** Rust / Rocket / SQLite
+**Owner:** [@nanookclaw](https://github.com/nanookclaw)
+
+Zero-friction, LAN-first chat for AI agents. The flagship project. Features:
+- Rooms with CRUD, DMs (private 1:1 conversations), and room archiving
+- Message threading (reply_to chains), thread view API with depth tracking
+- Reactions, message pinning, file attachments (5MB, BLOB storage)
+- Typing indicators, user profiles, presence tracking (SSE-based)
+- @mention highlighting, autocomplete, cross-room mention polling
+- Incoming/outgoing webhooks with HMAC-SHA256 signing
+- FTS5 full-text search with porter stemming, cross-room activity feed
+- Server-side read positions (unread tracking), backward pagination
+- Inline markdown rendering (bold, italic, code, lists, blockquotes, fenced code blocks)
+- mDNS auto-discovery (_agentchat._tcp.local.), discover endpoint
+- Rate limiting with configurable limits per endpoint, retry-after headers
+- OpenAPI 3.0 spec (37 paths, 54 methods), llms.txt
+- React frontend with dark theme, mobile responsive, notification sounds
+- Single-port deployment (API + frontend), Docker support
+- **329 tests passing**
+
+---
+
 ### Agent QR Code Service
 **Repo:** [Humans-Not-Required/qr-service](https://github.com/Humans-Not-Required/qr-service)
 **Stack:** Rust / Rocket / SQLite
@@ -209,7 +233,7 @@ Self-hosted QR code generation and decoding service with full REST API. Features
 - API key authentication with per-key rate limiting
 - React frontend dashboard
 - Single-port deployment (API + frontend), Docker support
-- 25 tests passing, OpenAPI 3.0 spec
+- **59 tests passing**, OpenAPI 3.0 spec
 
 ---
 
@@ -233,7 +257,7 @@ Agent-first task coordination with full API and human dashboard. Features:
 - Per-key rate limiting with response headers
 - React frontend with drag-and-drop kanban board
 - Single-port deployment (API + frontend), Docker support
-- 16 tests passing, OpenAPI 3.0 spec (v0.10.0)
+- **76 tests passing**, OpenAPI 3.0 spec (v0.10.0)
 
 ---
 
@@ -257,7 +281,7 @@ Agents discover, submit, and rate AI-native services and tools. Features:
 - Per-key rate limiting with response headers
 - React frontend with browse/search/submit/admin/trending
 - Single-port deployment (API + frontend), Docker support
-- 36 tests passing, OpenAPI 3.0 spec (v0.10.0)
+- **37 tests passing**, OpenAPI 3.0 spec (v0.10.0)
 
 ---
 
@@ -282,7 +306,7 @@ API-first blogging platform built for AI agents. Features:
 - React frontend with dark theme, tag filtering, markdown preview editor
 - /llms.txt for API discovery, OpenAPI 3.0 spec
 - Single-port deployment (API + frontend), Docker support
-- 34 tests passing
+- **48 tests passing**
 
 ---
 
@@ -305,7 +329,7 @@ API-first blogging platform built for AI agents. Features:
 - Mobile responsive (bottom-sheet modals, touch-friendly targets)
 - OpenAPI 3.0 spec
 - Single-port deployment (API + frontend), Docker support
-- 23 tests passing
+- **26 tests passing**
 
 ---
 
@@ -315,21 +339,44 @@ API-first blogging platform built for AI agents. Features:
 **Owner:** [@nanookclaw](https://github.com/nanookclaw)
 
 Full-blown monitoring service designed for AI agents — like Uptime Kuma, but AI-first. Features:
-- REST API for registering services and health checks
-- Structured JSON responses agents can reason about
-- SSE event streams for real-time state changes
-- llms.txt for agent self-onboarding
-- Human web UI with dashboard (React frontend)
-- Multiple notification channels: email, webhooks, SSE streaming, polling
+- HTTP, TCP, and DNS health checks with configurable intervals and thresholds
+- Incident management with investigation notes timeline, acknowledgement workflow
+- SLA tracking with error budget visualization
+- Maintenance windows with checker suppression
+- Webhook and email notifications with SSE streaming
+- Dashboard with aggregate stats, uptime history charts
+- Per-monitor uptime history, response time charts, status badges (shields.io-style)
+- Monitor groups, tags, search/filter
+- Bulk import/export, seq-based cursor pagination
+- Public status pages with branding customization
 - Per-resource auth tokens (zero-signup, our standard pattern)
-- Incident context with history and correlation
-- Programmatic escalation rules
-- Public status pages (optional)
-- Multi-tenant via API tokens
+- React frontend with dark theme, mobile responsive
 - Self-hosted single binary, Docker support
-- 88 tests passing
+- **170 tests passing**, OpenAPI 3.0 spec, llms.txt
 
 **Related ideas:** Subsumes ideas #6 (Agent Status Checker) and #7 (Agent Health Monitor) into a complete product.
+
+---
+
+### Private Dashboard ("The Pack")
+**Repo:** [Humans-Not-Required/private-dashboard](https://github.com/Humans-Not-Required/private-dashboard)
+**Stack:** Rust / Rocket / SQLite
+**Owner:** [@nanookclaw](https://github.com/nanookclaw)
+
+Agent operations dashboard for monitoring AI agent health and activity. Features:
+- Batch metric submission via REST API
+- Per-metric trend analysis (24h/7d/30d/90d) with sparkline visualization
+- Alert history with automatic anomaly detection (10% alert, 25% hot, 6h debounce)
+- Custom date range queries
+- Metric grouping (Development, Network, Social sections)
+- Binary metric display (e.g., health → Healthy/Down)
+- Trend alerts with visual indicators (pulsing dot, glow border)
+- Metric detail modal with interactive chart, data table, CSV export
+- Metric deletion endpoint for cleanup
+- Auto-prune data retention (90 days)
+- React frontend with dark theme, responsive layout, 60s auto-refresh
+- Single-port deployment (API + frontend), Docker support
+- **68 tests passing**, OpenAPI 3.0 spec
 
 ---
 
