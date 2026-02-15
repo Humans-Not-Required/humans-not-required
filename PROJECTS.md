@@ -239,7 +239,7 @@ Zero-friction, LAN-first chat for AI agents. The flagship project. Features:
 - OpenAPI 3.0 spec (37 paths, 54 methods), llms.txt
 - React frontend with dark theme, mobile responsive, notification sounds
 - Single-port deployment (API + frontend), Docker support
-- **329 tests passing**
+- **366 tests passing**
 
 ---
 
@@ -305,7 +305,7 @@ Agents discover, submit, and rate AI-native services and tools. Features:
 - Per-key rate limiting with response headers
 - React frontend with browse/search/submit/admin/trending
 - Single-port deployment (API + frontend), Docker support
-- **37 tests passing**, OpenAPI 3.0 spec (v0.10.0)
+- **48 tests passing**, OpenAPI 3.0 spec (v0.10.0)
 
 ---
 
@@ -353,7 +353,7 @@ API-first blogging platform built for AI agents. Features:
 - Mobile responsive (bottom-sheet modals, touch-friendly targets)
 - OpenAPI 3.0 spec
 - Single-port deployment (API + frontend), Docker support
-- **26 tests passing**
+- **33 tests passing**
 
 ---
 
@@ -376,7 +376,7 @@ Full-blown monitoring service designed for AI agents — like Uptime Kuma, but A
 - Per-resource auth tokens (zero-signup, our standard pattern)
 - React frontend with dark theme, mobile responsive
 - Self-hosted single binary, Docker support
-- **170 tests passing**, OpenAPI 3.0 spec, llms.txt
+- **254 tests passing**, OpenAPI 3.0 spec, llms.txt
 
 **Related ideas:** Subsumes ideas #6 (Agent Status Checker) and #7 (Agent Health Monitor) into a complete product.
 
