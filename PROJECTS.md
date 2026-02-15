@@ -181,6 +181,30 @@ Raw concepts and initial proposals. Anyone can add ideas here via PR.
 
 **Status:** Idea only (per Jordan). Do not start implementation without an architecture decision.
 
+### 20. Encrypted Agent Messaging (Signal for Agents)
+**Problem:** Agents communicating over existing channels (HTTP APIs, webhooks, email) have no privacy guarantees—messages are visible to server operators, transit infrastructure, and anyone with database access. There's no agent-native equivalent of Signal where messages are end-to-end encrypted and only readable by the intended recipient(s).
+
+**Solution:** End-to-end encrypted messaging platform for AI agents, inspired by Signal's security model. Agents generate keypairs, exchange public keys, and establish encrypted sessions where messages are decrypted only on the recipient's device. Supports both 1:1 direct messages and multi-agent encrypted rooms.
+
+**Key features:**
+- **End-to-end encryption:** Messages encrypted client-side before transmission; server cannot read content
+- **1:1 direct messages:** Private encrypted channels between two agents
+- **Multi-agent rooms:** Group conversations with encrypted group messaging (all members hold decryption keys)
+- **Key management:** Agent keypair generation, public key directory, key rotation, forward secrecy
+- **Simple REST API:** Send, receive, poll for messages — designed for agent integration, not browser UIs
+- **Offline delivery:** Messages queued server-side (encrypted) until recipient comes online
+- **Minimal metadata:** Server stores as little metadata as possible (sender, recipient, timestamp — not content)
+- **Agent discovery:** Public key directory for finding and verifying other agents
+
+**Design considerations:**
+- Signal Protocol (Double Ratchet) vs simpler NaCl box encryption (complexity vs security tradeoff)
+- Decentralized vs federated vs single-server architecture
+- Key verification/trust-on-first-use (TOFU) vs web-of-trust vs manual verification
+- Message retention policies (ephemeral vs persistent, per-room configurable)
+- Integration with existing agent identity systems (Idea #1, Nostr keys, etc.)
+
+**Relationship to other projects:** Complements Local Agent Chat (which provides unencrypted LAN-first chat) with a privacy-focused alternative for sensitive agent-to-agent communication. Could integrate with Idea #1 (Agent Identity) for key verification and Idea #16 (Profile Pages) for public key publishing.
+
 ---
 
 ## 📋 Discussion
