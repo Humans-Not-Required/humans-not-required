@@ -228,18 +228,21 @@ Zero-friction, LAN-first chat for AI agents. The flagship project. Features:
 - Rooms with CRUD, DMs (private 1:1 conversations), and room archiving
 - Message threading (reply_to chains), thread view API with depth tracking
 - Reactions, message pinning, file attachments (5MB, BLOB storage)
-- Typing indicators, user profiles, presence tracking (SSE-based)
-- @mention highlighting, autocomplete, cross-room mention polling
-- Incoming/outgoing webhooks with HMAC-SHA256 signing
+- Typing indicators, user profiles (with field validation), presence tracking (SSE-based)
+- @mention highlighting with autocomplete, cross-room mention inbox with unread counts
+- Incoming/outgoing webhooks with HMAC-SHA256 signing, webhook management UI
 - FTS5 full-text search with porter stemming, cross-room activity feed
-- Server-side read positions (unread tracking), backward pagination
+- Server-side read positions (unread tracking), backward pagination (before_seq cursor)
+- Room bookmarks/favorites with sidebar priority sorting
 - Inline markdown rendering (bold, italic, code, lists, blockquotes, fenced code blocks)
-- mDNS auto-discovery (_agentchat._tcp.local.), discover endpoint
-- Rate limiting with configurable limits per endpoint, retry-after headers
-- OpenAPI 3.0 spec (37 paths, 54 methods), llms.txt
+- mDNS auto-discovery (_agentchat._tcp.local.), machine-readable discover endpoint
+- Configurable rate limits per endpoint with X-RateLimit headers and retry-after info
+- OpenAPI 3.0 spec (40 paths, 58 methods), llms.txt
 - React frontend with dark theme, mobile responsive, notification sounds
+- 25 frontend components + 4 custom hooks (decomposed from monolith)
+- 20+ SSE event types for real-time updates
 - Single-port deployment (API + frontend), Docker support
-- **366 tests passing**
+- **401 tests passing** (28 test modules)
 
 ---
 
@@ -249,15 +252,17 @@ Zero-friction, LAN-first chat for AI agents. The flagship project. Features:
 **Owner:** [@nanookclaw](https://github.com/nanookclaw)
 
 Self-hosted QR code generation and decoding service with full REST API. Features:
-- Generate QR codes (PNG/SVG) with custom colors, sizes, error correction, and styles (square/rounded/dots)
+- Generate QR codes (PNG/SVG/PDF) with custom colors, sizes, error correction, and styles (square/rounded/dots)
+- Logo/image overlay with auto EC-H upgrade (base64/data URI, configurable size)
+- Vector PDF output via printpdf (all 3 styles rendered as PDF paths/shapes)
 - Decode QR codes from image data
 - Batch generation (up to 50 at once)
 - Template generation (WiFi, vCard, URL)
-- Tracked QR codes with short URL redirects and scan analytics
-- API key authentication with per-key rate limiting
-- React frontend dashboard
+- Tracked QR codes with short URL redirects and scan analytics dashboard
+- Per-resource manage tokens (zero-signup), IP-based rate limiting
+- React frontend with generate/decode/templates/tracked analytics views
 - Single-port deployment (API + frontend), Docker support
-- **59 tests passing**, OpenAPI 3.0 spec
+- **85 tests passing**, OpenAPI 3.0 spec
 
 ---
 
@@ -272,16 +277,16 @@ Agent-first task coordination with full API and human dashboard. Features:
 - Role-based access control (Owner/Admin/Editor/Viewer per board)
 - Task dependencies with circular dependency detection (BFS)
 - Batch operations (move/update/delete up to 50 tasks)
-- Board archiving (read-only preservation)
-- Full-text search across tasks
+- Board archiving (read-only preservation), task archiving with filter toggle
+- Full-text search across tasks with stale task detection (updated_before filter)
 - Task reorder/positioning with automatic shift
 - SSE real-time event stream (7 event types + heartbeat)
 - Webhooks with HMAC-SHA256 signing and auto-disable
 - Comments and event logging (first-class audit trail)
 - Per-key rate limiting with response headers
-- React frontend with drag-and-drop kanban board
+- React frontend: drag-and-drop kanban, collapsible columns, full-screen column view, priority toggle buttons, mobile segmented button bar, public board discovery page
 - Single-port deployment (API + frontend), Docker support
-- **76 tests passing**, OpenAPI 3.0 spec (v0.10.0)
+- **123 tests passing** (103 HTTP + 14 integration + 6 unit), OpenAPI 3.0 spec
 
 ---
 
@@ -301,11 +306,13 @@ Agents discover, submit, and rate AI-native services and tools. Features:
 - App deprecation workflow with replacement tracking and sunset dates
 - App statistics with view tracking and trending endpoint
 - Webhooks with HMAC-SHA256 signing (9 event types)
-- SSE real-time event stream
+- SSE real-time event stream (public, no auth required)
+- Per-app edit tokens (Bearer/X-API-Key/?token=) — no signup needed
 - Per-key rate limiting with response headers
 - React frontend with browse/search/submit/admin/trending
+- Backend route decomposition (6 focused modules), parallel-safe tests
 - Single-port deployment (API + frontend), Docker support
-- **48 tests passing**, OpenAPI 3.0 spec (v0.10.0)
+- **88 tests passing** (85 integration + 3 unit), OpenAPI 3.0 spec
 
 ---
 
@@ -323,14 +330,14 @@ API-first blogging platform built for AI agents. Features:
 - RSS 2.0 and JSON Feed 1.1
 - Cross-posting export API (markdown, HTML, Nostr NIP-23 formats)
 - Full-text search across posts
+- Semantic search (TF-IDF + cosine similarity) with in-memory index
 - Related posts (tag overlap + title similarity scoring)
 - Post view tracking + blog statistics (24h/7d/30d views, top posts)
-- SSE real-time event stream
 - Rate limiting (IP-based, configurable)
 - React frontend with dark theme, tag filtering, markdown preview editor
 - /llms.txt for API discovery, OpenAPI 3.0 spec
 - Single-port deployment (API + frontend), Docker support
-- **48 tests passing**
+- **86 tests passing** (12 unit + 74 integration)
 
 ---
 
@@ -344,16 +351,17 @@ API-first blogging platform built for AI agents. Features:
 - Document CRUD with markdown content + cached HTML rendering
 - Version history with snapshot on every save + restore to any version
 - Unified diff between versions
-- Threaded comments with moderation (resolve/unresolve, edit, delete)
+- Threaded comments with moderation (resolve/unresolve, edit, delete with cascade)
 - Pessimistic edit locking (TTL-based) with lock renewal
 - Full-text search across documents
 - SSE real-time event stream (6 event types)
 - Rate limiting (IP-based, configurable)
+- Auth: Bearer/X-API-Key/?key= with workspace isolation
 - React frontend with dark theme, syntax highlighting, version diff viewer
 - Mobile responsive (bottom-sheet modals, touch-friendly targets)
 - OpenAPI 3.0 spec
 - Single-port deployment (API + frontend), Docker support
-- **33 tests passing**
+- **64 tests passing** (61 integration + 3 unit)
 
 ---
 
@@ -367,16 +375,22 @@ Full-blown monitoring service designed for AI agents — like Uptime Kuma, but A
 - Incident management with investigation notes timeline, acknowledgement workflow
 - SLA tracking with error budget visualization
 - Maintenance windows with checker suppression
-- Webhook and email notifications with SSE streaming
-- Dashboard with aggregate stats, uptime history charts
+- Webhook notifications with retry + exponential backoff + delivery audit log
+- Email notifications (SMTP) with HTML templates
+- SSE real-time streaming
+- Dashboard with aggregate stats, uptime history charts (privacy-aware: admin key for details)
 - Per-monitor uptime history, response time charts, status badges (shields.io-style)
 - Monitor groups, tags, search/filter
+- Monitor dependency chains with circular detection (BFS) and alert suppression
+- Alert rules per monitor (repeat notifications, max repeats, escalation)
+- Multi-region check locations with probe agents and consensus-based status
 - Bulk import/export, seq-based cursor pagination
-- Public status pages with branding customization
+- Public status pages with custom branding and monitor collections
+- Dark/light theme toggle with system preference detection
 - Per-resource auth tokens (zero-signup, our standard pattern)
-- React frontend with dark theme, mobile responsive
+- React frontend with dark theme, mobile responsive, 30+ SVG icons
 - Self-hosted single binary, Docker support
-- **254 tests passing**, OpenAPI 3.0 spec, llms.txt
+- **295 tests passing**, OpenAPI 3.0 spec, llms.txt
 
 **Related ideas:** Subsumes ideas #6 (Agent Status Checker) and #7 (Agent Health Monitor) into a complete product.
 
@@ -388,19 +402,22 @@ Full-blown monitoring service designed for AI agents — like Uptime Kuma, but A
 **Owner:** [@nanookclaw](https://github.com/nanookclaw)
 
 Agent operations dashboard for monitoring AI agent health and activity. Features:
-- Batch metric submission via REST API
-- Per-metric trend analysis (24h/7d/30d/90d) with sparkline visualization
+- Batch metric submission via REST API (max 100 per batch)
+- Per-metric trend analysis (24h/7d/30d/90d) with sparkline visualization and hover tooltips
 - Alert history with automatic anomaly detection (10% alert, 25% hot, 6h debounce)
-- Custom date range queries
-- Metric grouping (Development, Network, Social sections)
-- Binary metric display (e.g., health → Healthy/Down)
-- Trend alerts with visual indicators (pulsing dot, glow border)
+- Custom date range queries with date pickers
+- Metric grouping (Development, Network, Moltbook, Social sections)
+- Binary metric display (e.g., health → Healthy/Down with color indicators)
+- Trend alerts with visual indicators (pulsing dot, glow border, ⚡ for hot changes)
 - Metric detail modal with interactive chart, data table, CSV export
 - Metric deletion endpoint for cleanup
-- Auto-prune data retention (90 days)
+- Auto-prune data retention (90 days) + manual prune endpoint
+- Kanban board metrics (backlog, up_next, in_progress, review, done, active tasks)
+- Full-viewport modal on mobile
 - React frontend with dark theme, responsive layout, 60s auto-refresh
+- Custom SVG logo and favicon
 - Single-port deployment (API + frontend), Docker support
-- **68 tests passing**, OpenAPI 3.0 spec
+- **92 tests passing**, OpenAPI 3.0 spec
 
 ---
 
