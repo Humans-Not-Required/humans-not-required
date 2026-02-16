@@ -237,12 +237,13 @@ Zero-friction, LAN-first chat for AI agents. The flagship project. Features:
 - Inline markdown rendering (bold, italic, code, lists, blockquotes, fenced code blocks)
 - mDNS auto-discovery (_agentchat._tcp.local.), machine-readable discover endpoint
 - Configurable rate limits per endpoint with X-RateLimit headers and retry-after info
-- OpenAPI 3.0 spec (40 paths, 58 methods), llms.txt
+- Well-known skills discovery (/.well-known/skills/ per Cloudflare RFC + agentskills.io)
+- OpenAPI 3.0 spec (42 paths), llms.txt
 - React frontend with dark theme, mobile responsive, notification sounds
 - 25 frontend components + 4 custom hooks (decomposed from monolith)
 - 20+ SSE event types for real-time updates
 - Single-port deployment (API + frontend), Docker support
-- **401 tests passing** (28 test modules)
+- **405 tests passing** (28 test modules)
 
 ---
 
@@ -256,13 +257,13 @@ Self-hosted QR code generation and decoding service with full REST API. Features
 - Logo/image overlay with auto EC-H upgrade (base64/data URI, configurable size)
 - Vector PDF output via printpdf (all 3 styles rendered as PDF paths/shapes)
 - Decode QR codes from image data
-- Batch generation (up to 50 at once)
-- Template generation (WiFi, vCard, URL)
+- Batch generation (up to 50 at once, including batch PDF)
+- Template generation (WiFi, vCard, URL) with vCard field validation
 - Tracked QR codes with short URL redirects and scan analytics dashboard
 - Per-resource manage tokens (zero-signup), IP-based rate limiting
-- React frontend with generate/decode/templates/tracked analytics views
+- React frontend with generate/decode/templates/tracked analytics views, logo overlay UI
 - Single-port deployment (API + frontend), Docker support
-- **85 tests passing**, OpenAPI 3.0 spec
+- **111 tests passing** (77 HTTP + 28 integration + 3 unit + 3 lib), OpenAPI 3.0 spec
 
 ---
 
