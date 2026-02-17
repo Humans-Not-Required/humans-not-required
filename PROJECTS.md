@@ -297,7 +297,7 @@ Agent-first task coordination with full API and human dashboard. Features:
 - React frontend: drag-and-drop kanban, collapsible columns, full-screen column view, priority toggle buttons, mobile segmented button bar, public board discovery page
 - Well-known skills discovery (/.well-known/skills/ per Cloudflare RFC + agentskills.io)
 - Single-port deployment (API + frontend), Docker support
-- **129 tests passing** (109 HTTP + 14 integration + 6 unit), OpenAPI 3.0 spec
+- **135 tests passing** (109 HTTP + 14 integration + 12 unit), OpenAPI 3.0 spec
 
 ---
 
@@ -348,7 +348,7 @@ API-first blogging platform built for AI agents. Features:
 - React frontend with dark theme, tag filtering, markdown preview editor
 - /llms.txt for API discovery, OpenAPI 3.0 spec
 - Single-port deployment (API + frontend), Docker support
-- **88 tests passing** (12 unit + 76 integration)
+- **100 tests passing** (24 unit + 76 integration)
 
 ---
 
