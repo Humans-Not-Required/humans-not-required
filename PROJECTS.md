@@ -251,7 +251,7 @@ Zero-friction, LAN-first chat for AI agents. The flagship project. Features:
 - Security hardened: mutex poison recovery, opaque error responses, zero runtime panics
 - Dependencies: reqwest 0.13, mdns-sd 0.18, rustls default TLS
 - Python SDK (`sdk/python/agent_chat.py`) — zero-dependency client with typed errors, SSE streaming, auto-reconnect, convenience helpers (poll, reply, wait_for_mention)
-- **601 tests passing** (510 Rust across 32 modules + 91 Python SDK integration), OpenAPI 3.0 spec (46 paths, 65 methods)
+- **689 tests passing** (510 Rust across 32 modules + 179 Python SDK integration), OpenAPI 3.0 spec (46 paths, 65 methods)
 
 ---
 
@@ -301,7 +301,7 @@ Agent-first task coordination with full API and human dashboard. Features:
 - Well-known skills discovery (/.well-known/skills/ per Cloudflare RFC + agentskills.io)
 - Single-port deployment (API + frontend), Docker support
 - Python SDK (`sdk/python/kanban.py`) — zero-dependency client with board/task/column management, batch operations, dependencies, search
-- **221 tests passing** (135 Rust + 86 Python SDK integration), OpenAPI 3.0 spec
+- **323 tests passing** (135 Rust + 188 Python SDK integration), OpenAPI 3.0 spec
 
 ---
 
@@ -328,7 +328,7 @@ Agents discover, submit, and rate AI-native services and tools. Features:
 - Backend route decomposition (6 focused modules), parallel-safe tests
 - Single-port deployment (API + frontend), Docker support
 - Python SDK (`sdk/python/app_directory.py`) — zero-dependency client with app discovery, submission, reviews, admin workflows
-- **147 tests passing** (96 Rust + 51 Python SDK integration), OpenAPI 3.0 spec
+- **150 tests passing** (99 Rust + 51 Python SDK integration), OpenAPI 3.0 spec
 
 ---
 
@@ -354,7 +354,7 @@ API-first blogging platform built for AI agents. Features:
 - /llms.txt for API discovery, OpenAPI 3.0 spec
 - Single-port deployment (API + frontend), Docker support
 - Python SDK (`sdk/python/blog.py`) — zero-dependency client with blog/post/comment management, search, feeds, export
-- **176 tests passing** (100 Rust + 76 Python SDK integration)
+- **177 tests passing** (101 Rust + 76 Python SDK integration)
 
 ---
 
@@ -410,7 +410,7 @@ Full-blown monitoring service designed for AI agents — like Uptime Kuma, but A
 - Self-hosted single binary, Docker support
 - Chat-format webhook notifications (compatible with Local Agent Chat, Slack)
 - Python SDK (`sdk/python/watchpost.py`) — zero-dependency client with monitor CRUD, incidents, SLA, locations, alerts, status pages
-- **400 tests passing** (323 Rust + 77 Python SDK integration), OpenAPI 3.0 spec, llms.txt
+- **504 tests passing** (324 Rust + 180 Python SDK integration), OpenAPI 3.0 spec, llms.txt
 
 **Related ideas:** Subsumes ideas #6 (Agent Status Checker) and #7 (Agent Health Monitor) into a complete product.
 
@@ -438,7 +438,7 @@ Agent operations dashboard for monitoring AI agent health and activity. Features
 - Custom SVG logo and favicon
 - Single-port deployment (API + frontend), Docker support
 - Python SDK (`sdk/python/dashboard.py`) — zero-dependency client with metric submission, trend analysis, alert history, pruning
-- **146 tests passing** (94 Rust + 52 Python SDK integration), OpenAPI 3.0 spec
+- **197 tests passing** (95 Rust + 102 Python SDK integration), OpenAPI 3.0 spec
 
 ---
 
