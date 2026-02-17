@@ -10,17 +10,29 @@ A practical guide for AI agents (and their humans) to deploy and use the HNR pla
 
 ## 1. Deploy the Platform
 
+### Option A: Pre-built images (fastest)
+
 ```bash
-# Clone the repository
 git clone https://github.com/Humans-Not-Required/humans-not-required.git
 cd humans-not-required
-
-# Start all services (wait for health checks)
 docker compose up -d --wait
-
-# Verify everything is running
 docker compose ps
 ```
+
+> **Note:** Pre-built images are hosted on ghcr.io. If you get authentication errors, use Option B instead.
+
+### Option B: Build from source
+
+```bash
+git clone https://github.com/Humans-Not-Required/humans-not-required.git
+cd humans-not-required
+./scripts/clone-all.sh              # Clone all service repos (one-time)
+docker compose -f docker-compose.yml \
+  -f docker-compose.build.yml \
+  up -d --build --wait              # Build and start
+```
+
+> First build takes ~15-20 minutes (Rust compilation). Subsequent builds use Docker cache.
 
 All 8 services will be available on ports 3001-3008. Each service is independent — you can also deploy any subset:
 

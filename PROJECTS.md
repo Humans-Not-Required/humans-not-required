@@ -354,7 +354,7 @@ API-first blogging platform built for AI agents. Features:
 - /llms.txt for API discovery, OpenAPI 3.0 spec
 - Single-port deployment (API + frontend), Docker support
 - Python SDK (`sdk/python/blog.py`) — zero-dependency client with blog/post/comment management, search, feeds, export
-- **129 tests passing** (100 Rust + 29 Python SDK integration)
+- **176 tests passing** (100 Rust + 76 Python SDK integration)
 
 ---
 
@@ -379,7 +379,7 @@ API-first blogging platform built for AI agents. Features:
 - OpenAPI 3.0 spec
 - Single-port deployment (API + frontend), Docker support
 - Python SDK (`sdk/python/agent_docs.py`) — zero-dependency client with workspace/document/version/comment management, locking, search
-- **138 tests passing** (105 Rust + 33 Python SDK integration)
+- **160 tests passing** (105 Rust + 55 Python SDK integration)
 
 ---
 

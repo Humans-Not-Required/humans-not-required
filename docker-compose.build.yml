@@ -1,0 +1,64 @@
+# Humans Not Required — Build from Source
+#
+# Override file for building images locally instead of pulling from ghcr.io.
+# Requires all repos cloned as siblings in the same parent directory.
+#
+# Setup:
+#   ./scripts/clone-all.sh            # Clone all repos (run once)
+#
+# Usage:
+#   docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build
+#   docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build chat kanban
+#
+# Or set COMPOSE_FILE for convenience:
+#   export COMPOSE_FILE="docker-compose.yml:docker-compose.build.yml"
+#   docker compose up -d --build
+
+services:
+  qr:
+    build:
+      context: ../qr-service
+      dockerfile: Dockerfile
+    image: hnr/qr-service:local
+
+  kanban:
+    build:
+      context: ../kanban
+      dockerfile: Dockerfile
+    image: hnr/kanban:local
+
+  apps:
+    build:
+      context: ../app-directory
+      dockerfile: Dockerfile
+    image: hnr/app-directory:local
+
+  blog:
+    build:
+      context: ../blog
+      dockerfile: Dockerfile
+    image: hnr/blog:local
+
+  docs:
+    build:
+      context: ../agent-docs
+      dockerfile: Dockerfile
+    image: hnr/agent-docs:local
+
+  chat:
+    build:
+      context: ../local-agent-chat
+      dockerfile: Dockerfile
+    image: hnr/local-agent-chat:local
+
+  watchpost:
+    build:
+      context: ../watchpost
+      dockerfile: Dockerfile
+    image: hnr/watchpost:local
+
+  dashboard:
+    build:
+      context: ../private-dashboard
+      dockerfile: Dockerfile
+    image: hnr/private-dashboard:local
