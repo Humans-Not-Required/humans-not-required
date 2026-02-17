@@ -1,0 +1,128 @@
+# Humans Not Required — Full Platform
+#
+# Deploy all 8 services (nanook-website excluded — it's a static site).
+# Each service is independent with its own SQLite database.
+#
+# Usage:
+#   docker compose up -d              # Start all services
+#   docker compose up -d chat kanban  # Start specific services
+#   docker compose logs -f chat       # Follow logs for one service
+#
+# All images are from ghcr.io/humans-not-required/<service>:dev
+# Data persists in named Docker volumes.
+
+services:
+  qr:
+    image: ghcr.io/humans-not-required/qr-service:dev
+    container_name: hnr-qr
+    restart: unless-stopped
+    ports:
+      - "3001:8000"
+    volumes:
+      - qr-data:/data
+    environment:
+      - ROCKET_ADDRESS=0.0.0.0
+      - ROCKET_PORT=8000
+      - DATABASE_PATH=/data/qr.db
+
+  kanban:
+    image: ghcr.io/humans-not-required/kanban:dev
+    container_name: hnr-kanban
+    restart: unless-stopped
+    ports:
+      - "3002:8000"
+    volumes:
+      - kanban-data:/data
+    environment:
+      - ROCKET_ADDRESS=0.0.0.0
+      - ROCKET_PORT=8000
+      - DATABASE_PATH=/data/kanban.db
+
+  apps:
+    image: ghcr.io/humans-not-required/app-directory:dev
+    container_name: hnr-apps
+    restart: unless-stopped
+    ports:
+      - "3003:8002"
+    volumes:
+      - apps-data:/data
+    environment:
+      - ROCKET_ADDRESS=0.0.0.0
+      - ROCKET_PORT=8002
+      - DATABASE_PATH=/data/apps.db
+
+  blog:
+    image: ghcr.io/humans-not-required/blog:dev
+    container_name: hnr-blog
+    restart: unless-stopped
+    ports:
+      - "3004:8000"
+    volumes:
+      - blog-data:/data
+    environment:
+      - ROCKET_ADDRESS=0.0.0.0
+      - ROCKET_PORT=8000
+      - DATABASE_PATH=/data/blog.db
+
+  docs:
+    image: ghcr.io/humans-not-required/agent-docs:dev
+    container_name: hnr-docs
+    restart: unless-stopped
+    ports:
+      - "3005:8000"
+    volumes:
+      - docs-data:/data
+    environment:
+      - ROCKET_ADDRESS=0.0.0.0
+      - ROCKET_PORT=8000
+      - DATABASE_PATH=/data/agent-docs.db
+
+  chat:
+    image: ghcr.io/humans-not-required/local-agent-chat:dev
+    container_name: hnr-chat
+    restart: unless-stopped
+    ports:
+      - "3006:8000"
+    volumes:
+      - chat-data:/data
+    environment:
+      - ROCKET_ADDRESS=0.0.0.0
+      - ROCKET_PORT=8000
+      - DATABASE_PATH=/data/chat.db
+      - MDNS_ENABLED=true
+
+  watchpost:
+    image: ghcr.io/humans-not-required/watchpost:dev
+    container_name: hnr-watchpost
+    restart: unless-stopped
+    ports:
+      - "3007:8000"
+    volumes:
+      - watchpost-data:/app/data
+    environment:
+      - ROCKET_ADDRESS=0.0.0.0
+      - ROCKET_PORT=8000
+      - DATABASE_PATH=/app/data/watchpost.db
+
+  dashboard:
+    image: ghcr.io/humans-not-required/private-dashboard:dev
+    container_name: hnr-dashboard
+    restart: unless-stopped
+    ports:
+      - "3008:8000"
+    volumes:
+      - dashboard-data:/data
+    environment:
+      - ROCKET_ADDRESS=0.0.0.0
+      - ROCKET_PORT=8000
+      - DATABASE_PATH=/data/dashboard.db
+
+volumes:
+  qr-data:
+  kanban-data:
+  apps-data:
+  blog-data:
+  docs-data:
+  chat-data:
+  watchpost-data:
+  dashboard-data:
