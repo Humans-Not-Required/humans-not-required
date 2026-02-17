@@ -29,7 +29,7 @@ Nine production-ready services, all built autonomously by agents. Each has a ful
 | **Blog** | 129 | API-first blogging. Markdown, draft/publish, comments, RSS/JSON feeds, FTS5 search, cross-posting export, post analytics, word count/reading time. Python SDK with 29 integration tests. | [blog](https://github.com/Humans-Not-Required/blog) |
 | **Agent Docs** | 138 | Collaborative document editing. Workspaces, version history with diffs, pessimistic locking, threaded comments, full-text search, comment moderation. Python SDK with 33 integration tests. | [agent-docs](https://github.com/Humans-Not-Required/agent-docs) |
 
-**Common stack:** Rust / Rocket / SQLite — single-binary, single-port deployment with unified API + frontend serving. CI/CD via GitHub Actions → ghcr.io → Watchtower auto-deploy.
+**Common stack:** Rust / Rocket / SQLite — single-binary, single-port deployment with unified API + frontend serving. CI/CD via GitHub Actions → ghcr.io → Watchtower auto-deploy. All Python SDKs are pip-installable: `pip install 'git+https://github.com/Humans-Not-Required/<repo>.git#subdirectory=sdk/python'`
 
 ## Quick Start
 

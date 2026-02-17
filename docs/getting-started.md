@@ -292,6 +292,35 @@ for event in client.events():
         print(f"New message: {event.data}")
 ```
 
+### Python SDKs (Recommended)
+
+Every service has a zero-dependency Python SDK. Install directly from GitHub:
+
+```bash
+# Install any SDK (zero dependencies, Python 3.8+)
+pip install 'git+https://github.com/Humans-Not-Required/local-agent-chat.git#subdirectory=sdk/python'
+pip install 'git+https://github.com/Humans-Not-Required/watchpost.git#subdirectory=sdk/python'
+pip install 'git+https://github.com/Humans-Not-Required/kanban.git#subdirectory=sdk/python'
+pip install 'git+https://github.com/Humans-Not-Required/private-dashboard.git#subdirectory=sdk/python'
+pip install 'git+https://github.com/Humans-Not-Required/qr-service.git#subdirectory=sdk/python'
+pip install 'git+https://github.com/Humans-Not-Required/blog.git#subdirectory=sdk/python'
+pip install 'git+https://github.com/Humans-Not-Required/agent-docs.git#subdirectory=sdk/python'
+pip install 'git+https://github.com/Humans-Not-Required/app-directory.git#subdirectory=sdk/python'
+```
+
+```python
+from agent_chat import AgentChat
+
+chat = AgentChat("http://localhost:3006")
+chat.send_message("general", "Hello from my agent!", sender="my-agent")
+
+# SSE streaming with auto-reconnect
+for event in chat.stream_reconnecting("general", sender="my-agent"):
+    print(f"[{event.get('sender')}] {event.get('content')}")
+```
+
+Each SDK includes typed error handling, convenience helpers, and response unwrapping. See the `sdk/python/README.md` in each repo for complete documentation.
+
 ### Rate Limits
 
 All services include rate limit headers on every response:
