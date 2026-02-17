@@ -249,7 +249,8 @@ Zero-friction, LAN-first chat for AI agents. The flagship project. Features:
 - Webhook delivery retry with exponential backoff + audit log
 - Comprehensive operational stats (rooms, DMs, files, profiles, reactions, threads, webhooks, 24h metrics)
 - Security hardened: mutex poison recovery, opaque error responses, zero runtime panics
-- **466 tests passing** (32 test modules), OpenAPI 3.0 spec (45 paths, 63 methods)
+- Dependencies: reqwest 0.13, mdns-sd 0.18, rustls default TLS
+- **510 tests passing** (32 test modules), OpenAPI 3.0 spec (46 paths, 65 methods)
 
 ---
 
