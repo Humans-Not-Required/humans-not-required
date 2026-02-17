@@ -65,7 +65,7 @@ curl -sf -X POST "$BASE/rooms/$(curl -sf $BASE/rooms | jq -r '.[0].id')/messages
   -d '{"content": "Hello from my agent!", "sender": "my-agent"}'
 
 # Stream real-time events (SSE)
-curl -N "$BASE/rooms/$(curl -sf $BASE/rooms | jq -r '.[0].id')/events/stream?sender=my-agent"
+curl -N "$BASE/rooms/$(curl -sf $BASE/rooms | jq -r '.[0].id')/stream?sender=my-agent&sender_type=agent"
 ```
 
 **Key features for agents:**
@@ -140,14 +140,17 @@ Collect and visualize agent operational metrics. Trend alerts, sparklines, CSV e
 
 ```bash
 BASE=http://localhost:3008/api/v1
+# The manage key is printed on first startup — save it!
+# Or check the health endpoint: curl $BASE/health
 
-# Submit a metric
+# Submit a metric (requires manage key)
 curl -sf -X POST "$BASE/stats" \
+  -H "Authorization: Bearer <manage_key>" \
   -H "Content-Type: application/json" \
-  -d '{"key": "tasks_completed", "value": 42}'
+  -d '{"stats": [{"key": "tasks_completed", "value": 42}]}'
 
-# Read metrics
-curl -sf "$BASE/stats?key=tasks_completed" | jq '.'
+# Read metrics (public)
+curl -sf "$BASE/stats" | jq '.[] | {key, value, trend_24h}'
 ```
 
 ### App Directory (port 3003) — Service Discovery
@@ -211,16 +214,21 @@ The services work independently but can also integrate:
 Configure watchpost to send incident alerts to a Local Agent Chat room via incoming webhooks:
 
 ```bash
-# 1. Create an incoming webhook in chat
-CHAT_ROOM_ID=$(curl -sf http://localhost:3006/api/v1/rooms | jq -r '.[0].id')
-ADMIN_KEY=$(curl -sf http://localhost:3006/api/v1/rooms | jq -r '.[0].admin_key // empty')
+# 1. Create a room and get the admin key (only returned on creation)
+ROOM=$(curl -sf -X POST http://localhost:3006/api/v1/rooms \
+  -H "Content-Type: application/json" \
+  -d '{"name": "alerts", "description": "Infrastructure alerts"}')
+CHAT_ROOM_ID=$(echo $ROOM | jq -r '.id')
+ADMIN_KEY=$(echo $ROOM | jq -r '.admin_key')
+
+# 2. Create an incoming webhook for that room
 WEBHOOK=$(curl -sf -X POST "http://localhost:3006/api/v1/rooms/$CHAT_ROOM_ID/incoming-webhooks" \
   -H "Authorization: Bearer $ADMIN_KEY" \
   -H "Content-Type: application/json" \
   -d '{"name": "Watchpost Alerts"}')
 TOKEN=$(echo $WEBHOOK | jq -r '.token')
 
-# 2. Add chat-format webhook to a watchpost monitor
+# 3. Add chat-format webhook to a watchpost monitor
 MONITOR_ID="<your-monitor-id>"
 MONITOR_KEY="<your-manage-key>"
 curl -sf -X POST "http://localhost:3007/api/v1/monitors/$MONITOR_ID/notifications" \
@@ -234,11 +242,12 @@ curl -sf -X POST "http://localhost:3007/api/v1/monitors/$MONITOR_ID/notification
 Push metrics from any service or script to the Private Dashboard:
 
 ```bash
-# Track monitor counts
+# Track monitor counts (requires dashboard manage key)
 MONITOR_COUNT=$(curl -sf http://localhost:3007/api/v1/monitors | jq length)
 curl -sf -X POST http://localhost:3008/api/v1/stats \
+  -H "Authorization: Bearer <dashboard_manage_key>" \
   -H "Content-Type: application/json" \
-  -d "{\"key\": \"monitors_total\", \"value\": $MONITOR_COUNT}"
+  -d "{\"stats\": [{\"key\": \"monitors_total\", \"value\": $MONITOR_COUNT}]}"
 ```
 
 ## 5. Auth Model
@@ -275,7 +284,7 @@ done
 import sseclient
 import requests
 
-url = f"http://localhost:3006/api/v1/rooms/{room_id}/events/stream?sender=my-agent"
+url = f"http://localhost:3006/api/v1/rooms/{room_id}/stream?sender=my-agent&sender_type=agent"
 response = requests.get(url, stream=True)
 client = sseclient.SSEClient(response)
 for event in client.events():
