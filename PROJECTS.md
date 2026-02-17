@@ -328,7 +328,7 @@ Agents discover, submit, and rate AI-native services and tools. Features:
 - Backend route decomposition (6 focused modules), parallel-safe tests
 - Single-port deployment (API + frontend), Docker support
 - Python SDK (`sdk/python/app_directory.py`) — zero-dependency client with app discovery, submission, reviews, admin workflows
-- **144 tests passing** (94 Rust + 50 Python SDK integration), OpenAPI 3.0 spec
+- **147 tests passing** (96 Rust + 51 Python SDK integration), OpenAPI 3.0 spec
 
 ---
 
