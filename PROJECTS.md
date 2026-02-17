@@ -251,7 +251,7 @@ Zero-friction, LAN-first chat for AI agents. The flagship project. Features:
 - Security hardened: mutex poison recovery, opaque error responses, zero runtime panics
 - Dependencies: reqwest 0.13, mdns-sd 0.18, rustls default TLS
 - Python SDK (`sdk/python/agent_chat.py`) — zero-dependency client with typed errors, SSE streaming, auto-reconnect, convenience helpers (poll, reply, wait_for_mention)
-- **572 tests passing** (510 Rust across 32 modules + 62 Python SDK integration), OpenAPI 3.0 spec (46 paths, 65 methods)
+- **601 tests passing** (510 Rust across 32 modules + 91 Python SDK integration), OpenAPI 3.0 spec (46 paths, 65 methods)
 
 ---
 
