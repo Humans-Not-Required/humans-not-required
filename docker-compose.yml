@@ -19,11 +19,11 @@ services:
     ports:
       - "3001:8000"
     volumes:
-      - qr-data:/data
+      - qr-data:/app/data
     environment:
       - ROCKET_ADDRESS=0.0.0.0
       - ROCKET_PORT=8000
-      - DATABASE_PATH=/data/qr.db
+      - DATABASE_PATH=/app/data/qr_service.db
 
   kanban:
     image: ghcr.io/humans-not-required/kanban:dev
@@ -32,11 +32,11 @@ services:
     ports:
       - "3002:8000"
     volumes:
-      - kanban-data:/data
+      - kanban-data:/app/data
     environment:
       - ROCKET_ADDRESS=0.0.0.0
       - ROCKET_PORT=8000
-      - DATABASE_PATH=/data/kanban.db
+      - DATABASE_PATH=/app/data/kanban.db
 
   apps:
     image: ghcr.io/humans-not-required/app-directory:dev
@@ -49,33 +49,33 @@ services:
     environment:
       - ROCKET_ADDRESS=0.0.0.0
       - ROCKET_PORT=8002
-      - DATABASE_PATH=/data/apps.db
+      - DATABASE_PATH=/data/app_directory.db
 
   blog:
     image: ghcr.io/humans-not-required/blog:dev
     container_name: hnr-blog
     restart: unless-stopped
     ports:
-      - "3004:8000"
+      - "3004:3004"
     volumes:
-      - blog-data:/data
+      - blog-data:/app/data
     environment:
       - ROCKET_ADDRESS=0.0.0.0
-      - ROCKET_PORT=8000
-      - DATABASE_PATH=/data/blog.db
+      - ROCKET_PORT=3004
+      - DATABASE_PATH=/app/data/blog.db
 
   docs:
     image: ghcr.io/humans-not-required/agent-docs:dev
     container_name: hnr-docs
     restart: unless-stopped
     ports:
-      - "3005:8000"
+      - "3005:3005"
     volumes:
-      - docs-data:/data
+      - docs-data:/app/data
     environment:
       - ROCKET_ADDRESS=0.0.0.0
-      - ROCKET_PORT=8000
-      - DATABASE_PATH=/data/agent-docs.db
+      - ROCKET_PORT=3005
+      - DATABASE_PATH=/app/data/agent_docs.db
 
   chat:
     image: ghcr.io/humans-not-required/local-agent-chat:dev
@@ -88,8 +88,7 @@ services:
     environment:
       - ROCKET_ADDRESS=0.0.0.0
       - ROCKET_PORT=8000
-      - DATABASE_PATH=/data/chat.db
-      - MDNS_ENABLED=true
+      - MDNS_ENABLED=false
 
   watchpost:
     image: ghcr.io/humans-not-required/watchpost:dev
@@ -103,6 +102,7 @@ services:
       - ROCKET_ADDRESS=0.0.0.0
       - ROCKET_PORT=8000
       - DATABASE_PATH=/app/data/watchpost.db
+      - STATIC_DIR=/app/frontend/dist
 
   dashboard:
     image: ghcr.io/humans-not-required/private-dashboard:dev
@@ -111,11 +111,12 @@ services:
     ports:
       - "3008:8000"
     volumes:
-      - dashboard-data:/data
+      - dashboard-data:/app/data
     environment:
       - ROCKET_ADDRESS=0.0.0.0
       - ROCKET_PORT=8000
-      - DATABASE_PATH=/data/dashboard.db
+      - DATABASE_PATH=/app/data/dashboard.db
+      - STATIC_DIR=/app/frontend/dist
 
 volumes:
   qr-data:
