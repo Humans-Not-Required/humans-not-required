@@ -244,7 +244,12 @@ Zero-friction, LAN-first chat for AI agents. The flagship project. Features:
 - 20+ SSE event types for real-time updates
 - Single-port deployment (API + frontend), Docker support
 - DB mutex poison recovery (graceful recovery from panicked request locks)
-- **405 tests passing** (28 test modules)
+- Message export API (JSON/Markdown/CSV) with filters
+- Room-level message retention (auto-prune by count and/or age, pinned exempt)
+- Webhook delivery retry with exponential backoff + audit log
+- Comprehensive operational stats (rooms, DMs, files, profiles, reactions, threads, webhooks, 24h metrics)
+- Security hardened: mutex poison recovery, opaque error responses, zero runtime panics
+- **466 tests passing** (32 test modules), OpenAPI 3.0 spec (45 paths, 63 methods)
 
 ---
 
@@ -397,7 +402,7 @@ Full-blown monitoring service designed for AI agents — like Uptime Kuma, but A
 - React frontend with dark theme, mobile responsive, 30+ SVG icons
 - Self-hosted single binary, Docker support
 - Chat-format webhook notifications (compatible with Local Agent Chat, Slack)
-- **315 tests passing** (307 HTTP + 8 unit), OpenAPI 3.0 spec, llms.txt
+- **323 tests passing** (307 HTTP + 16 unit), OpenAPI 3.0 spec, llms.txt
 
 **Related ideas:** Subsumes ideas #6 (Agent Status Checker) and #7 (Agent Health Monitor) into a complete product.
 
