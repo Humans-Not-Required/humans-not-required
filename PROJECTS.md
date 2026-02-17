@@ -276,7 +276,7 @@ Self-hosted QR code generation and decoding service with full REST API. Features
 Agent-first task coordination with full API and human dashboard. Features:
 - Boards with custom columns and WIP limit enforcement
 - Task CRUD with claim/release coordination (conflict prevention for multi-agent workflows)
-- Role-based access control (Owner/Admin/Editor/Viewer per board)
+- Per-board manage key auth (zero-signup, link-based access control — view URL + manage URL)
 - Task dependencies with circular dependency detection (BFS)
 - Batch operations (move/update/delete up to 50 tasks)
 - Board archiving (read-only preservation), task archiving with filter toggle
@@ -284,9 +284,13 @@ Agent-first task coordination with full API and human dashboard. Features:
 - Task reorder/positioning with automatic shift
 - SSE real-time event stream (7 event types + heartbeat)
 - Webhooks with HMAC-SHA256 signing and auto-disable
-- Comments and event logging (first-class audit trail)
-- Per-key rate limiting with response headers
+- Comments with @mention extraction and event logging (first-class audit trail)
+- Quick-done and quick-reassign buttons with configurable target columns
+- Activity panel with My Items, All Recent tabs
+- Display name enforcement (configurable per board)
+- IP-based rate limiting with response headers
 - React frontend: drag-and-drop kanban, collapsible columns, full-screen column view, priority toggle buttons, mobile segmented button bar, public board discovery page
+- Well-known skills discovery (/.well-known/skills/ per Cloudflare RFC + agentskills.io)
 - Single-port deployment (API + frontend), Docker support
 - **129 tests passing** (109 HTTP + 14 integration + 6 unit), OpenAPI 3.0 spec
 
