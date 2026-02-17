@@ -250,7 +250,8 @@ Zero-friction, LAN-first chat for AI agents. The flagship project. Features:
 - Comprehensive operational stats (rooms, DMs, files, profiles, reactions, threads, webhooks, 24h metrics)
 - Security hardened: mutex poison recovery, opaque error responses, zero runtime panics
 - Dependencies: reqwest 0.13, mdns-sd 0.18, rustls default TLS
-- **510 tests passing** (32 test modules), OpenAPI 3.0 spec (46 paths, 65 methods)
+- Python SDK (`sdk/python/agent_chat.py`) — zero-dependency client with typed errors, SSE streaming, auto-reconnect, convenience helpers (poll, reply, wait_for_mention)
+- **572 tests passing** (510 Rust across 32 modules + 62 Python SDK integration), OpenAPI 3.0 spec (46 paths, 65 methods)
 
 ---
 
@@ -270,7 +271,8 @@ Self-hosted QR code generation and decoding service with full REST API. Features
 - Per-resource manage tokens (zero-signup), IP-based rate limiting
 - React frontend with generate/decode/templates/tracked analytics views, logo overlay UI
 - Single-port deployment (API + frontend), Docker support
-- **122 tests passing** (88 HTTP + 28 integration + 3 unit + 3 lib), OpenAPI 3.0 spec
+- Python SDK (`sdk/python/qr_service.py`) — zero-dependency client with generation, decoding, templates, tracked QR, batch operations
+- **196 tests passing** (122 Rust + 74 Python SDK integration), OpenAPI 3.0 spec
 
 ---
 
@@ -298,7 +300,8 @@ Agent-first task coordination with full API and human dashboard. Features:
 - React frontend: drag-and-drop kanban, collapsible columns, full-screen column view, priority toggle buttons, mobile segmented button bar, public board discovery page
 - Well-known skills discovery (/.well-known/skills/ per Cloudflare RFC + agentskills.io)
 - Single-port deployment (API + frontend), Docker support
-- **135 tests passing** (109 HTTP + 14 integration + 12 unit), OpenAPI 3.0 spec
+- Python SDK (`sdk/python/kanban.py`) — zero-dependency client with board/task/column management, batch operations, dependencies, search
+- **221 tests passing** (135 Rust + 86 Python SDK integration), OpenAPI 3.0 spec
 
 ---
 
@@ -324,7 +327,8 @@ Agents discover, submit, and rate AI-native services and tools. Features:
 - React frontend with browse/search/submit/admin/trending
 - Backend route decomposition (6 focused modules), parallel-safe tests
 - Single-port deployment (API + frontend), Docker support
-- **94 tests passing** (91 integration + 3 unit), OpenAPI 3.0 spec
+- Python SDK (`sdk/python/app_directory.py`) — zero-dependency client with app discovery, submission, reviews, admin workflows
+- **144 tests passing** (94 Rust + 50 Python SDK integration), OpenAPI 3.0 spec
 
 ---
 
@@ -349,7 +353,8 @@ API-first blogging platform built for AI agents. Features:
 - React frontend with dark theme, tag filtering, markdown preview editor
 - /llms.txt for API discovery, OpenAPI 3.0 spec
 - Single-port deployment (API + frontend), Docker support
-- **100 tests passing** (24 unit + 76 integration)
+- Python SDK (`sdk/python/blog.py`) — zero-dependency client with blog/post/comment management, search, feeds, export
+- **129 tests passing** (100 Rust + 29 Python SDK integration)
 
 ---
 
@@ -373,7 +378,8 @@ API-first blogging platform built for AI agents. Features:
 - Mobile responsive (bottom-sheet modals, touch-friendly targets)
 - OpenAPI 3.0 spec
 - Single-port deployment (API + frontend), Docker support
-- **105 tests passing** (102 integration + 3 unit)
+- Python SDK (`sdk/python/agent_docs.py`) — zero-dependency client with workspace/document/version/comment management, locking, search
+- **138 tests passing** (105 Rust + 33 Python SDK integration)
 
 ---
 
@@ -403,7 +409,8 @@ Full-blown monitoring service designed for AI agents — like Uptime Kuma, but A
 - React frontend with dark theme, mobile responsive, 30+ SVG icons
 - Self-hosted single binary, Docker support
 - Chat-format webhook notifications (compatible with Local Agent Chat, Slack)
-- **323 tests passing** (307 HTTP + 16 unit), OpenAPI 3.0 spec, llms.txt
+- Python SDK (`sdk/python/watchpost.py`) — zero-dependency client with monitor CRUD, incidents, SLA, locations, alerts, status pages
+- **400 tests passing** (323 Rust + 77 Python SDK integration), OpenAPI 3.0 spec, llms.txt
 
 **Related ideas:** Subsumes ideas #6 (Agent Status Checker) and #7 (Agent Health Monitor) into a complete product.
 
@@ -430,7 +437,8 @@ Agent operations dashboard for monitoring AI agent health and activity. Features
 - React frontend with dark theme, responsive layout, 60s auto-refresh
 - Custom SVG logo and favicon
 - Single-port deployment (API + frontend), Docker support
-- **94 tests passing**, OpenAPI 3.0 spec
+- Python SDK (`sdk/python/dashboard.py`) — zero-dependency client with metric submission, trend analysis, alert history, pruning
+- **146 tests passing** (94 Rust + 52 Python SDK integration), OpenAPI 3.0 spec
 
 ---
 
