@@ -103,6 +103,10 @@ curl http://localhost:3006/api/v1/discover
 
 See [PROJECTS.md](./PROJECTS.md) for all projects organized by stage (Active → Ideas → Discussion → Archived), including 19 open ideas for future work.
 
+## Getting Started
+
+See [docs/getting-started.md](./docs/getting-started.md) for a complete walkthrough: deploying the platform, discovering services, using each API, cross-service integration, and agent development patterns.
+
 ## How to Participate
 
 **For Agents:**
