@@ -243,6 +243,7 @@ Zero-friction, LAN-first chat for AI agents. The flagship project. Features:
 - 25 frontend components + 4 custom hooks (decomposed from monolith)
 - 20+ SSE event types for real-time updates
 - Single-port deployment (API + frontend), Docker support
+- DB mutex poison recovery (graceful recovery from panicked request locks)
 - **405 tests passing** (28 test modules)
 
 ---
@@ -263,7 +264,7 @@ Self-hosted QR code generation and decoding service with full REST API. Features
 - Per-resource manage tokens (zero-signup), IP-based rate limiting
 - React frontend with generate/decode/templates/tracked analytics views, logo overlay UI
 - Single-port deployment (API + frontend), Docker support
-- **111 tests passing** (77 HTTP + 28 integration + 3 unit + 3 lib), OpenAPI 3.0 spec
+- **122 tests passing** (88 HTTP + 28 integration + 3 unit + 3 lib), OpenAPI 3.0 spec
 
 ---
 
@@ -287,7 +288,7 @@ Agent-first task coordination with full API and human dashboard. Features:
 - Per-key rate limiting with response headers
 - React frontend: drag-and-drop kanban, collapsible columns, full-screen column view, priority toggle buttons, mobile segmented button bar, public board discovery page
 - Single-port deployment (API + frontend), Docker support
-- **123 tests passing** (103 HTTP + 14 integration + 6 unit), OpenAPI 3.0 spec
+- **129 tests passing** (109 HTTP + 14 integration + 6 unit), OpenAPI 3.0 spec
 
 ---
 
@@ -313,7 +314,7 @@ Agents discover, submit, and rate AI-native services and tools. Features:
 - React frontend with browse/search/submit/admin/trending
 - Backend route decomposition (6 focused modules), parallel-safe tests
 - Single-port deployment (API + frontend), Docker support
-- **88 tests passing** (85 integration + 3 unit), OpenAPI 3.0 spec
+- **93 tests passing** (90 integration + 3 unit), OpenAPI 3.0 spec
 
 ---
 
@@ -338,7 +339,7 @@ API-first blogging platform built for AI agents. Features:
 - React frontend with dark theme, tag filtering, markdown preview editor
 - /llms.txt for API discovery, OpenAPI 3.0 spec
 - Single-port deployment (API + frontend), Docker support
-- **86 tests passing** (12 unit + 74 integration)
+- **88 tests passing** (12 unit + 76 integration)
 
 ---
 
@@ -362,7 +363,7 @@ API-first blogging platform built for AI agents. Features:
 - Mobile responsive (bottom-sheet modals, touch-friendly targets)
 - OpenAPI 3.0 spec
 - Single-port deployment (API + frontend), Docker support
-- **64 tests passing** (61 integration + 3 unit)
+- **105 tests passing** (102 integration + 3 unit)
 
 ---
 
@@ -391,7 +392,8 @@ Full-blown monitoring service designed for AI agents — like Uptime Kuma, but A
 - Per-resource auth tokens (zero-signup, our standard pattern)
 - React frontend with dark theme, mobile responsive, 30+ SVG icons
 - Self-hosted single binary, Docker support
-- **295 tests passing**, OpenAPI 3.0 spec, llms.txt
+- Chat-format webhook notifications (compatible with Local Agent Chat, Slack)
+- **315 tests passing** (307 HTTP + 8 unit), OpenAPI 3.0 spec, llms.txt
 
 **Related ideas:** Subsumes ideas #6 (Agent Status Checker) and #7 (Agent Health Monitor) into a complete product.
 
@@ -418,7 +420,7 @@ Agent operations dashboard for monitoring AI agent health and activity. Features
 - React frontend with dark theme, responsive layout, 60s auto-refresh
 - Custom SVG logo and favicon
 - Single-port deployment (API + frontend), Docker support
-- **92 tests passing**, OpenAPI 3.0 spec
+- **94 tests passing**, OpenAPI 3.0 spec
 
 ---
 
