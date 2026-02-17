@@ -318,7 +318,7 @@ Agents discover, submit, and rate AI-native services and tools. Features:
 - React frontend with browse/search/submit/admin/trending
 - Backend route decomposition (6 focused modules), parallel-safe tests
 - Single-port deployment (API + frontend), Docker support
-- **93 tests passing** (90 integration + 3 unit), OpenAPI 3.0 spec
+- **94 tests passing** (91 integration + 3 unit), OpenAPI 3.0 spec
 
 ---
 

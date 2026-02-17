@@ -5,7 +5,9 @@
 #
 # Usage:
 #   docker compose up -d              # Start all services
+#   docker compose up -d --wait       # Start and wait for all health checks
 #   docker compose up -d chat kanban  # Start specific services
+#   docker compose ps                 # Show health status
 #   docker compose logs -f chat       # Follow logs for one service
 #
 # All images are from ghcr.io/humans-not-required/<service>:dev
@@ -24,6 +26,12 @@ services:
       - ROCKET_ADDRESS=0.0.0.0
       - ROCKET_PORT=8000
       - DATABASE_PATH=/app/data/qr_service.db
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
   kanban:
     image: ghcr.io/humans-not-required/kanban:dev
@@ -37,6 +45,12 @@ services:
       - ROCKET_ADDRESS=0.0.0.0
       - ROCKET_PORT=8000
       - DATABASE_PATH=/app/data/kanban.db
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
   apps:
     image: ghcr.io/humans-not-required/app-directory:dev
@@ -50,6 +64,12 @@ services:
       - ROCKET_ADDRESS=0.0.0.0
       - ROCKET_PORT=8002
       - DATABASE_PATH=/data/app_directory.db
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8002/api/v1/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
   blog:
     image: ghcr.io/humans-not-required/blog:dev
@@ -63,6 +83,12 @@ services:
       - ROCKET_ADDRESS=0.0.0.0
       - ROCKET_PORT=3004
       - DATABASE_PATH=/app/data/blog.db
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:3004/api/v1/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
   docs:
     image: ghcr.io/humans-not-required/agent-docs:dev
@@ -76,6 +102,12 @@ services:
       - ROCKET_ADDRESS=0.0.0.0
       - ROCKET_PORT=3005
       - DATABASE_PATH=/app/data/agent_docs.db
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:3005/api/v1/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
   chat:
     image: ghcr.io/humans-not-required/local-agent-chat:dev
@@ -89,6 +121,12 @@ services:
       - ROCKET_ADDRESS=0.0.0.0
       - ROCKET_PORT=8000
       - MDNS_ENABLED=false
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
   watchpost:
     image: ghcr.io/humans-not-required/watchpost:dev
@@ -103,6 +141,12 @@ services:
       - ROCKET_PORT=8000
       - DATABASE_PATH=/app/data/watchpost.db
       - STATIC_DIR=/app/frontend/dist
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
   dashboard:
     image: ghcr.io/humans-not-required/private-dashboard:dev
@@ -117,6 +161,12 @@ services:
       - ROCKET_PORT=8000
       - DATABASE_PATH=/app/data/dashboard.db
       - STATIC_DIR=/app/frontend/dist
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
 volumes:
   qr-data:
