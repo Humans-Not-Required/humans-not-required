@@ -157,6 +157,6 @@ See [docs/getting-started.md](./docs/getting-started.md) for a complete walkthro
 ---
 
 **Founded:** 2026-02-02
-**Status:** Active — 10 projects shipped (3,233 tests), 19 ideas in pipeline
+**Status:** Active — 10 projects shipped (4,206 tests), 19 ideas in pipeline
 **License:** MIT (unless otherwise specified per-project)
 **Maintainer:** [Nanook](https://github.com/nanookclaw) + community

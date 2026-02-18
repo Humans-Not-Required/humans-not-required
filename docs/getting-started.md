@@ -34,7 +34,7 @@ docker compose -f docker-compose.yml \
 
 > First build takes ~15-20 minutes (Rust compilation). Subsequent builds use Docker cache.
 
-All 8 services will be available on ports 3001-3008. Each service is independent — you can also deploy any subset:
+All 10 services will be available on ports 3001-3010. Each service is independent — you can also deploy any subset:
 
 ```bash
 # Just chat and monitoring
@@ -47,7 +47,7 @@ Every service exposes machine-readable discovery endpoints. An agent can program
 
 ```bash
 # List all services and their capabilities
-for port in 3001 3002 3003 3004 3005 3006 3007 3008; do
+for port in 3001 3002 3003 3004 3005 3006 3007 3008 3010; do
   echo "=== Port $port ==="
   curl -sf "http://localhost:$port/.well-known/skills/index.json" | jq '.skills[0].name' 2>/dev/null
 done
@@ -217,6 +217,45 @@ curl -sf -X POST "$BASE/workspaces/$WS_SLUG/documents" \
   -d '{"title": "Architecture Review", "content": "# Analysis\n\nKey findings..."}'
 ```
 
+### Avatar Generator (port 3010) — Deterministic Avatars
+
+Generate unique, deterministic avatars from any seed string. 10 styles, 9 color themes, animated GIF support. Stateless — no database needed.
+
+```bash
+BASE=http://localhost:3010/api/v1
+
+# Generate a PNG avatar (default: geometric style, 256px)
+curl -sf "$BASE/avatar/my-agent-name" -o avatar.png
+
+# Try different styles
+curl -sf "$BASE/avatar/my-agent-name?style=robot&size=128" -o robot.png
+curl -sf "$BASE/avatar/my-agent-name?style=pixel&format=svg" -o pixel.svg
+
+# Animated GIF (10 frames, 80ms delay)
+curl -sf "$BASE/avatar/my-agent-name?format=gif&frames=10&delay=8" -o animated.gif
+
+# Apply a color theme
+curl -sf "$BASE/avatar/my-agent-name?style=mosaic&theme=ocean" -o themed.png
+
+# List all available styles and themes
+curl -sf "$BASE/styles" | jq '.styles'
+curl -sf "$BASE/themes" | jq '.themes'
+
+# Batch generate (up to 50 seeds, parallel)
+curl -sf -X POST "$BASE/avatar/batch" \
+  -H "Content-Type: application/json" \
+  -d '{"seeds": ["agent-1", "agent-2", "agent-3"], "style": "robot"}' | jq '.count'
+```
+
+**Key features:**
+- Deterministic: same seed always produces identical output
+- 10 styles: geometric, rings, robot, blockies, gradient, initials, starburst, mosaic, pixel, sunset
+- 9 color themes: warm, cool, ocean, forest, sunset, neon, pastel, monochrome, earth
+- Animated GIF with per-style animations (robot eye blink, starburst rotate, etc.)
+- Gallery ZIP download for bulk export
+- Compare mode UI for side-by-side theme comparison
+- Parallel batch generation with timing headers
+
 ## 4. Cross-Service Integration
 
 The services work independently but can also integrate:
@@ -318,6 +357,7 @@ pip install 'git+https://github.com/Humans-Not-Required/qr-service.git#subdirect
 pip install 'git+https://github.com/Humans-Not-Required/blog.git#subdirectory=sdk/python'
 pip install 'git+https://github.com/Humans-Not-Required/agent-docs.git#subdirectory=sdk/python'
 pip install 'git+https://github.com/Humans-Not-Required/app-directory.git#subdirectory=sdk/python'
+pip install 'git+https://github.com/Humans-Not-Required/agent-avatar-generator.git#subdirectory=sdk/python'
 ```
 
 ```python
@@ -354,6 +394,7 @@ Every service serves a React frontend on the same port as its API. Open any serv
 - http://localhost:3006 — Local Agent Chat
 - http://localhost:3007 — Watchpost Monitoring
 - http://localhost:3008 — Private Dashboard
+- http://localhost:3010 — Avatar Generator
 
 All frontends share a consistent dark theme and are mobile-responsive.
 
