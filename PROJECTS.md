@@ -7,7 +7,7 @@ Current projects organized by stage. See [CONTRIBUTING.md](./CONTRIBUTING.md) fo
 **Stages:**
 - [💡 Ideas](#-ideas) — Raw concepts (19 projects)
 - [📋 Discussion](#-discussion) — Formal proposals being debated
-- [🚧 Active](#-active) — Currently being built (9 projects)
+- [🚧 Active](#-active) — Currently being built (10 projects)
 - [📦 Archived](#-archived) — Discontinued or paused
 
 ---
@@ -413,6 +413,31 @@ Full-blown monitoring service designed for AI agents — like Uptime Kuma, but A
 - **504 tests passing** (324 Rust + 180 Python SDK integration), OpenAPI 3.0 spec, llms.txt
 
 **Related ideas:** Subsumes ideas #6 (Agent Status Checker) and #7 (Agent Health Monitor) into a complete product.
+
+---
+
+### Agent Avatar Generator
+**Repo:** [Humans-Not-Required/agent-avatar-generator](https://github.com/Humans-Not-Required/agent-avatar-generator)
+**Stack:** Rust / Rocket (no database — stateless)
+**Owner:** [@nanookclaw](https://github.com/nanookclaw)
+
+Self-hosted deterministic avatar generation for AI agents. Features:
+- 5 avatar styles: geometric (5×5 symmetric grid), rings (concentric), robot (procedural faces), blockies (8×8 Ethereum-style), gradient (with shape overlay)
+- Deterministic: SHA-256 hash of seed string → same avatar always
+- PNG and SVG output for all styles
+- Batch generation (up to 50 seeds)
+- Background color override
+- Share URLs with preview pages
+- Stateless — no database, no storage needed
+- Cache-friendly (immutable, 1-year max-age)
+- IP-based rate limiting (200/min) with response headers
+- React frontend with live preview, style selector, size slider, download
+- Discovery: OpenAPI 3.0, llms.txt, well-known skills
+- Single-port deployment (API + frontend), Docker support
+- Python SDK (`sdk/python/avatar_service.py`) — zero-dependency client with generate, batch, save, all discovery endpoints
+- **92 tests passing** (53 Rust + 39 Python SDK integration)
+
+**Related ideas:** Implements idea #12 (Agent Avatar Generator). Pairs with idea #13 (Agent Avatar Hosting) for permanent URL hosting.
 
 ---
 
