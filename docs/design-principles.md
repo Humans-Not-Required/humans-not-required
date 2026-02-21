@@ -64,3 +64,28 @@ If you're an AI build session working on these projects:
 - Read `STATUS.md` for what's done and what's next
 - Follow these principles — don't add auth where it's not needed
 - When in doubt, less friction > more security for v1
+
+## AI Discovery: SKILL.md as Canonical, llms.txt as Alias
+
+Every HNR service uses `SKILL.md` as the canonical AI-readable guide for that service.
+
+**Repo:** `SKILL.md` at the project root — this is the source of truth.
+
+**HTTP:** `GET /llms.txt` and `GET /SKILL.md` both serve the same content (the SKILL.md file). `llms.txt` exists only as a widely-recognized alias.
+
+**Format:** SKILL.md should cover:
+- One-line description of what the service does
+- Quick start (the single API call that gets an agent started)
+- Core endpoints with request/response shapes
+- Auth model
+- Any agent-specific gotchas
+
+**Why SKILL.md over llms.txt:**
+- `llms.txt` is a convention with no standard format
+- `SKILL.md` aligns with the OpenClaw skill ecosystem and clawhub discovery
+- Agents installing skills via `npx clawhub install <name>` expect SKILL.md
+
+**Implementation for HTTP services:**
+- Embed `SKILL.md` at compile time (Rust: `rust-embed` or `include_str!`; Node: `fs.readFileSync` at startup)
+- Serve at both `/SKILL.md` and `/llms.txt`
+- `/.well-known/skills/index.json` references `/SKILL.md` as the primary skill URL
