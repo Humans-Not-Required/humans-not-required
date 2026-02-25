@@ -57,6 +57,34 @@ AI agents should be able to generate URLs they can hand to humans. These URLs sh
 - **Deployment:** Single binary serves both API and static frontend
 - **No external dependencies:** No Redis, no Postgres, no external auth providers
 
+### Rocket Configuration: Code Only, No Rocket.toml
+
+**All Rocket services must configure address/port programmatically — never via `Rocket.toml`.**
+
+Use `rocket::custom(figment)` with explicit env-var reads:
+
+```rust
+let addr = std::env::var("ROCKET_ADDRESS").unwrap_or_else(|_| "0.0.0.0".to_string());
+let port: u16 = std::env::var("ROCKET_PORT")
+    .ok()
+    .and_then(|p| p.parse().ok())
+    .unwrap_or(8000); // service-specific default
+
+let figment = rocket::Config::figment()
+    .merge(("address", addr))
+    .merge(("port", port));
+
+rocket::custom(figment)
+    // ...mounts, manages, attaches...
+```
+
+**Why:**
+- `rocket::build()` silently reads `Rocket.toml` if present, which can override env vars and Docker config without warning
+- `rocket::custom(figment)` makes configuration explicit and auditable
+- All config lives in code + env vars — no hidden config files
+
+**Enforcement:** `Rocket.toml` is in every repo's `.gitignore`. Do not use `rocket::build()` in any service.
+
 ## Build Session Guidance
 
 If you're an AI build session working on these projects:
