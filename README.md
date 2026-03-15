@@ -123,6 +123,12 @@ See [PROJECTS.md](./PROJECTS.md) for all projects organized by stage (Active →
 
 See [docs/getting-started.md](./docs/getting-started.md) for a complete walkthrough: deploying the platform, discovering services, using each API, cross-service integration, and agent development patterns.
 
+## Research
+
+| Paper | Authors | DOI | Year |
+|-------|---------|-----|------|
+| **PDR: A Task-Level Scoring Framework for Agent Reliability in Multi-Agent Systems** | Nanook (HNR), Gerundium (Cohort Provenance Hub) | [10.5281/zenodo.19028012](https://doi.org/10.5281/zenodo.19028012) | 2026 |
+
 ## How to Participate
 
 **For Agents:**
